@@ -1,0 +1,556 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PDS.ViewYourFunding.Data.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests">
+            <summary>
+            The Funding controller tests.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests._mapper">
+            <summary>
+            The mapper.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests._mockAzureSearchFundingAliasClient">
+            <summary>
+            The mock azure search funding alias client.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests._mockAzureSearchProviderFundingAliasClient">
+            <summary>
+            The mock azure search provider funding alias client.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests._mockAzureSearchAliasClientManager">
+            <summary>
+            The mock azure search alias client manager.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.ClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)">
+            <summary>
+            Classes the initialize.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.MockSearchServiceManager">
+            <summary>
+            Mocks the search service manager.
+            </summary>
+            <returns>The Mock Azure Search service manager.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.MockBackgroundTaskQueue">
+            <summary>
+            Mocks the background task queue.
+            </summary>
+            <returns>The back ground task queue.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.GetFunding_Empty">
+            <summary>
+            Gets the funding empty.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.GetFunding_OneResult">
+            <summary>
+            Gets the funding one result.
+            </summary>
+            <returns><see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchFundings_Empty">
+            <summary>
+            Searches the fundings empty.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchFundings_OneProviderWithOneVersion">
+            <summary>
+            Searches the fundings one provider with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchFundings_OneProviderWithMultipleVersions">
+            <summary>
+            Searches the fundings one provider with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchFundings_MultipleProvidersEachWithOneVersion">
+            <summary>
+            Searches the fundings multiple providers each with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchFundings_MultipleProvidersEachWithMultipleVersions">
+            <summary>
+            Searches the fundings multiple providers each with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchProviderFundings_Empty">
+            <summary>
+            Searches the provider fundings empty.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchProviderFundings_OneProviderWithOneVersion">
+            <summary>
+            Searches the provider fundings one provider with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchProviderFundings_OneProviderWithMultipleVersions">
+            <summary>
+            Searches the provider fundings one provider with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchProviderFundings_MultipleProvidersEachWithOneVersion">
+            <summary>
+            Searches the provider fundings multiple providers each with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.SearchProviderFundings_MultipleProvidersEachWithMultipleVersions">
+            <summary>
+            Searches the provider fundings multiple providers each with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.MockConfigurationService">
+            <summary>
+            Mocks the configuration service.
+            </summary>
+            <returns>The mock configuration service.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.MockFundingControllerLoggerService">
+            <summary>
+            Mocks the logger service.
+            </summary>
+            <returns>The mock logger service.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.MockSearchServiceLoggerService">
+            <summary>
+            Mocks the search service logger service.
+            </summary>
+            <returns>The Mock logger.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.GetFundingController">
+            <summary>
+            Gets the funding controller.
+            </summary>
+            <returns>The Funding controller.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.GetAzureFundingSearchService">
+            <summary>
+            Gets the azure funding search service.
+            </summary>
+            <returns>The AzureFundingSearchService.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.GetSearchResult(System.Collections.Generic.List{PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument})">
+            <summary>
+            Gets the search result.
+            </summary>
+            <param name="documents">The documents.</param>
+            <returns>The AzureFundingSearchDocument.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Integration.FundingControllerTests.GetProviderFundingSearchResult(System.Collections.Generic.List{PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument})">
+            <summary>
+            Gets the provider funding search result.
+            </summary>
+            <param name="documents">The documents.</param>
+            <returns>The AzureProviderFundingSearchDocument.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests">
+            <summary>
+            The Funding controller tests.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests._mapper">
+            <summary>
+            The mapper.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests._mockFundingSearchService">
+            <summary>
+            The mock funding search service.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests._mockSearchServiceManager">
+            <summary>
+            The mock search service manager.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests._mockConfigurationService">
+            <summary>
+            The mock configuration service.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests._mockLoggerService">
+            <summary>
+            The mock logger service.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.ClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)">
+            <summary>
+            Classes the initialize.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.GetFunding_ReturnsOneFunding">
+            <summary>
+            Gets the funding returns one funding.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.GetFunding_ReturnsZeroFundings">
+            <summary>
+            Gets the funding returns zero fundings.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_PassesThroughParameters">
+            <summary>
+            Searches the fundings passes through parameters.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFunding_FiltersUsed">
+            <summary>
+            Searches the funding filters used.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_HandlesEmptyResult">
+            <summary>
+            Searches the fundings handles empty result.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_HandlesNullDocuments">
+            <summary>
+            Searches the fundings handles null documents.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_OneProviderWithOneVersion">
+            <summary>
+            Searches the fundings one provider with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_OneProviderWithMultipleVersions">
+            <summary>
+            Searches the fundings one provider with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_MultipleProvidersEachWithOneVersion">
+            <summary>
+            Searches the fundings multiple providers each with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundings_MultipleProvidersEachWithMultipleVersions">
+            <summary>
+            Searches the fundings multiple providers each with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_PassesThroughParameters">
+            <summary>
+            Searches the funding providers passes through parameters.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_HandlesNullResult">
+            <summary>
+            Searches the funding providers handles null result.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_HandlesNullDocuments">
+            <summary>
+            Searches the funding providers handles null documents.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_OneProviderWithOneVersion">
+            <summary>
+            Searches the funding providers one provider with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_OneProviderWithMultipleVersions">
+            <summary>
+            Searches the funding providers one provider with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_MultipleProvidersEachWithOneVersion">
+            <summary>
+            Searches the funding providers multiple providers each with one version.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SearchFundingProviders_MultipleProvidersEachWithMultipleVersions">
+            <summary>
+            Searches the funding providers multiple providers each with multiple versions.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.GetRawSearchResult(System.String)">
+            <summary>
+            Gets the raw search result.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>The IFundingSearchDocument.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.GetFundingController">
+            <summary>
+            Gets the funding controller.
+            </summary>
+            <returns>The FundingController.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Controllers.FundingControllerTests.SetupMockServices">
+            <summary>
+            Setups the mock services.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Tests.Unit.Helpers.ToggleAuthorizeHandlerTests">
+            <summary>
+            The Toggle Authorize Handler Tests.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Helpers.ToggleAuthorizeHandlerTests.ToggleAuthorizationHandler_SecurityDisabled_Should_Succeed">
+            <summary>
+            The toggle authorization handler should succeed when security is disabled.
+            </summary>
+            <returns>The expected requirement result.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Helpers.ToggleAuthorizeHandlerTests.ToggleAuthorizationHandler_UserNotAuthenticated_Should_Fail">
+            <summary>
+            The toggle authorization handler should fail when security is enabled but the user is not authenticated.
+            </summary>
+            <returns>The expected requirement result.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Helpers.ToggleAuthorizeHandlerTests.ToggleAuthorizationHandler_UserAuthenticated_Should_Succeed">
+            <summary>
+            The toggle authorization handler should succeed when security is enabled and user is authenticated.
+            </summary>
+            <returns>The expected requirement result.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Helpers.ToggleAuthorizeHandlerTests.GetUser(System.Boolean)">
+            <summary>
+            Gets the authenticated user.
+            </summary>
+            <param name="authenticated">The authenticated flag.</param>
+            <returns>ClaimsPrincipal.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests">
+            <summary>
+            The AzureFunding Search service tests.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.AzureSearchMaxResults">
+            <summary>
+            The azure search maximum results.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.Top">
+            <summary>
+            The top.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.ProviderFundingRebuildUrl">
+            <summary>
+            The provider funding rebuild URL.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.FundingRebuildUrl">
+            <summary>
+            The funding rebuild URL.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.DefaultMockDocumentConfiguration">
+            <summary>
+            The default mock document configuration.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.mockConfigurationService">
+            <summary>
+            The mock configuration service.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.mockSearchServiceManager">
+            <summary>
+            The mock search service manager.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockBackgroundTaskQueue">
+            <summary>
+            Mocks the background task queue.
+            </summary>
+            <returns>the IBackgroundTaskQueue.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.GetFunding_UsesFundingsIndexClient">
+            <summary>
+            Gets the funding uses fundings index client.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.GetProviderFunding_UsesFundingsIndexClient">
+            <summary>
+            Gets the provider funding uses fundings index client.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFundings_UsesFundingsIndexClient">
+            <summary>
+            Searches the fundings uses fundings index client.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFunding_CheckParameters(System.Nullable{System.Int32},System.String,System.Int32,System.String)">
+            <summary>
+            Searches the funding check parameters.
+            </summary>
+            <param name="fundingsFirstSearchSize">Size of the fundings first search.</param>
+            <param name="periodCode">The period code.</param>
+            <param name="expectedSearchSize">Expected size of the search.</param>
+            <param name="expectedFilter">The expected filter.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFundings_CheckSearchText(System.String,System.String)">
+            <summary>
+            Searches the fundings check search text.
+            </summary>
+            <param name="searchText">The search text.</param>
+            <param name="expectedSearchText">The expected search text.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFundings_OnlyGetsFirstPage">
+            <summary>
+            Searches the fundings only gets first page.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFundings_GetAllPages">
+            <summary>
+            Searches the fundings get all pages.
+            </summary>
+            <returns>A<see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFundings_GetAllPagesWhenOnlyOneLaGroup">
+            <summary>
+            Searches the fundings get all pages when only one la group.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchFundings_UkprnContains37">
+            <summary>
+            Searches the fundings ukprn contains37.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchProviderFunding_UsesProviderIndexClient">
+            <summary>
+            Searches the provider funding uses provider index client.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchProviderFunding_CheckParameters(System.String,System.String)">
+            <summary>
+            Searches the provider funding check parameters.
+            </summary>
+            <param name="periodCode">The period code.</param>
+            <param name="expectedFilter">The expected filter.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchProviderFunding_CheckSearchText(System.String,System.String)">
+            <summary>
+            Searches the provider funding check search text.
+            </summary>
+            <param name="searchText">The search text.</param>
+            <param name="expectedSearchText">The expected search text.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.SearchProviderFunding_GetsAllPages">
+            <summary>
+            Searches the provider funding gets all pages.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous unit test.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration">
+            <summary>
+            The MockDocumentConfiguration.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration"/> class.
+            </summary>
+            <param name="skip">The skip.</param>
+            <param name="returnedDocumentCount">The returned document count.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration"/> class.
+            </summary>
+            <param name="skip">The skip.</param>
+            <param name="documentCount">The document count.</param>
+            <param name="documentsTotal">The documents total.</param>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration.Skip">
+            <summary>
+            Gets or sets the skip.
+            </summary>
+            <value>
+            The skip.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration.ReturnedDocumentCount">
+            <summary>
+            Gets or sets the returned document count.
+            </summary>
+            <value>
+            The returned document count.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration.DocumentsTotal">
+            <summary>
+            Gets or sets the documents total.
+            </summary>
+            <value>
+            The documents total.
+            </value>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.GetMockClientManager(Moq.Mock{PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClient{PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument}},Moq.Mock{PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClient{PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument}})">
+            <summary>
+            Gets the mock client manager.
+            </summary>
+            <param name="mockFundingsProviderIndexClient">The mock fundings provider index client.</param>
+            <param name="mockFundingsIndexClient">The mock fundings index client.</param>
+            <returns>the IAzureSearchAliasClientManager.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.GetMockSearchClient``1(PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.MockDocumentConfiguration[])">
+            <summary>
+            Gets the mock search client.
+            </summary>
+            <typeparam name="T">The Document type,.</typeparam>
+            <param name="resultsConfigs">The results configs.</param>
+            <returns>the IAzureSearchAliasClient.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Tests.Unit.Services.AzureFundingsSearchServiceTests.GetMockDocuments``1(System.Int32,System.Int32)">
+            <summary>
+            Gets the mock documents.
+            </summary>
+            <typeparam name="T">The list item type.</typeparam>
+            <param name="skip">The skip.</param>
+            <param name="numberRequired">The number required.</param>
+            <returns>The list of items.</returns>
+        </member>
+    </members>
+</doc>

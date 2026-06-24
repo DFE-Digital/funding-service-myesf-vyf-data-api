@@ -1,0 +1,827 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PDS.ViewYourFunding.Data.Services</name>
+    </assembly>
+    <members>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Attributes.AzureSearchIndexAttribute">
+            <summary>
+            Indicates that the class encapsulates the fields of an Azure Search index.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Attributes.AzureSearchIndexAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.Attributes.AzureSearchIndexAttribute"/> class.
+            </summary>
+            <param name="aliasName">The alias name.</param>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Attributes.AzureSearchIndexAttribute.AliasName">
+            <summary>
+            Gets the alias name that should be used as a name prefix when building the Azure Search index.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService">
+            <summary>
+            An implementation of IFundingSearchService that uses Azure Search.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.MaximumResultsPerAzureSearch">
+            <summary>
+            This is a hard limit on the number of results that Azure Search will return per request.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.BearerHeaderName">
+            <summary>
+            The bearer header name.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.#ctor(PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClientManager,PDS.ViewYourFunding.Data.Core.ApplicationConfiguration,PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager,Microsoft.Extensions.Logging.ILogger{PDS.ViewYourFunding.Data.Services.AzureFundingSearchService},PDS.ViewYourFunding.Data.Interfaces.IBackgroundTaskQueue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService"/> class.
+            </summary>
+            <param name="searchAliasClientManager">The Search Index Client manager to use.</param>
+            <param name="configuration">The configuration service to use to look up key/values.</param>
+            <param name="searchServiceManager">The search service manager to use.</param>
+            <param name="logger">Logging service to use.</param>
+            <param name="taskQueue">Queue for background tasks.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.SearchProviderFunding(PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.String,System.Boolean)">
+            <summary>
+            Search for provider funding.
+            </summary>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="searchTerm">The search term to match.</param>
+            <param name="waitForIndexBuild">Should we wait for the index to (re)build.</param>
+            <returns>A response object containing the list of matching funding providers.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.SearchFunding(PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.String,System.Boolean)">
+            <summary>
+            Search for funding by group.
+            </summary>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="searchTerm">The search term to match.</param>
+            <param name="waitForIndexBuild">Should we wait for the index to (re)build.</param>
+            <returns>A response object containing the list of matching groups. If only one group is found, the response also contains all of the
+            fundings for provider fundings under that group.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetFunding(System.String,System.Boolean)">
+            <summary>
+            Get a single instance of funding by its id.
+            </summary>
+            <param name="id">A funding id to lookup.</param>
+            <param name="waitForIndexBuild">Should we await the index (re)build (if it necessary), or cancel with an error.</param>
+            <returns>A single instance of funding, with its associated provider funding - or null.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetProviderFunding(System.String,System.Boolean)">
+            <summary>
+            Get the provider funding for a specific funding.
+            </summary>
+            <param name="parentId">The if of parent funding id to get provider funding for.</param>
+            <param name="waitForIndexBuild">Should we await the index (re)build (if it necessary), or cancel with an error.</param>
+            <returns>Funding providers that make up the funding.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetJsonSerializedPropertyName(System.Type,System.String)">
+            <summary>
+            Get the JSON serialized version of the property name.
+            </summary>
+            <param name="type">The type the property is defined under.</param>
+            <param name="propertyName">The name of the property.</param>
+            <returns>The field name as it would appear in a JSON document.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.SearchDocs``1(System.Int32,PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.Nullable{System.Int32},System.String,PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClient{``0},System.Boolean)">
+            <summary>
+            Make the call to the underlying search service to search documents using params and search term.
+            </summary>
+            <typeparam name="T">The return type and the underlying document type.</typeparam>
+            <param name="batchCount">How many batches are they to look through.</param>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="resultsPerPage">How many results are on a single page.</param>
+            <param name="cleanSearchTerm">The search term to use (cleaned up previously).</param>
+            <param name="searchQueryClient">The implementation of search to use.</param>
+            <param name="isProviderFunding">Is Provider funding.</param>
+            <returns>A list of matching documents.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.SetupIndexesIfRequired``1(System.Boolean,System.Boolean)">
+            <summary>
+            Set up the required index if its necessary.
+            </summary>
+            <param name="waitForIndexBuild">Should we await the index (re)build (if it necessary), or cancel with an error.</param>
+            <param name="isFunding">Is it the funding index (implicitly, its the provider funding if not).</param>
+            <typeparam name="T">The type of the index class.</typeparam>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetCleanSearchTerm(System.String)">
+            <summary>
+            Clean up the search term to match how its kept in the search index.
+            </summary>
+            <param name="originalSearchTerm">The original search term to clean up.</param>
+            <returns>A cleaned up search term.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetSearchParameters(PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.Boolean)">
+            <summary>
+            Generate the search parameters for the index search.
+            </summary>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="isProviderFunding">Are we going to be querying the funding provider index.</param>
+            <returns>A search parameters object to be passed to Azure Search service.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.BuildFilter(PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.Boolean)">
+            <summary>
+            Get a filter string composed of the filters we wish to apply.
+            </summary>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="isProviderFunding">Are we going to be querying the funding provider index.</param>
+            <returns>A filter string.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.RequestRebuild``1(System.Int32,System.Boolean,System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Requests rebuild.
+            </summary>
+            <typeparam name="T">The type of the paramater.</typeparam>
+            <param name="classHash"> The class hash value.</param>
+            <param name="waitForIndexBuild">The wait for index rebuild flag.</param>
+            <param name="isFunding">The isFunding flag.</param>
+            <param name="cosmosDbConnectionString">The connections string for the Cosmos database.</param>
+            <param name="cosmosDbCollection">The collection to use in the Cosmos database.</param>
+            <param name="cosmosDbQuery">The query to execute in the Cosmos database.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.ResetIndexStatus(System.Boolean)">
+            <summary>
+            Resets the index status flag.
+            </summary>
+            <param name="isFunding">The isFunding flag.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetClassHash(System.Boolean)">
+            <summary>
+            Gets the hash value for the class.
+            </summary>
+            <param name="isFunding">Flag to indicate it's a funding hash.</param>
+            <returns>int.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.GetSetupStatus(System.Boolean)">
+            <summary>
+            Gets the setup status.
+            </summary>
+            <param name="isFunding">Flag to indicate it's a funding hash.</param>
+            <returns>SetupStatus.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.SetIndexStatus(PDS.ViewYourFunding.Data.Services.Enums.SetupStatus,System.Boolean)">
+            <summary>
+            Sets the setup status.
+            </summary>
+            <param name="status">The status to set.</param>
+            <param name="isFunding">Flag to indicate it's a funding setup.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.StoreClassHash(System.Int32,System.Boolean)">
+            <summary>
+            Stores the hash value for the class.
+            </summary>
+            <param name="classHash">The hash to set.</param>
+            <param name="isFunding">Flag to indicate it's a funding hash.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureFundingSearchService.RebuildIndex``1(System.Int32,System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Rebuilds the index.
+            </summary>
+            <typeparam name="T">The type parameter.</typeparam>
+            <param name="classHash">The hash value for the class.</param>
+            <param name="isFunding">The isFunding flag.</param>
+            <param name="cosmosDbConnectionString">The connections string for the Cosmos database.</param>
+            <param name="cosmosDbCollection">The collection to use in the Cosmos database.</param>
+            <param name="cosmosDbQuery">The query to execute in the Cosmos database.</param>
+            <returns>An async Task for the rebuilding of the index.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient">
+            <summary>
+            The Azure Search alias client.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClientManager">
+            <summary>
+            A class for managing Azure Search Index Client connections.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClientManager.#ctor(System.String,System.String,PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager,Microsoft.Extensions.Logging.ILogger{PDS.ViewYourFunding.Data.Services.AzureSearchAliasClientManager},PDS.ViewYourFunding.Data.Core.ApplicationConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClientManager"/> class.
+            </summary>
+            <param name="searchServiceName">The name of the Azure Search service.</param>
+            <param name="queryApiKey">The API key used for querying.</param>
+            <param name="searchServiceManager">The search service manager to use.</param>
+            <param name="loggerService">Logger service to use.</param>
+            <param name="applicationConfiguration">Application config.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClientManager.GetSearchAliasClient``1(System.Int32)">
+            <summary>
+            Get the Search Index Client for the given type.
+            </summary>
+            <typeparam name="T">The document type of the index.</typeparam>
+            <param name="classThumbprint">The hash/thumbprint of T.</param>
+            <returns>A Search Index Client for the given type.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1">
+            <summary>
+            A class that wraps the Azure SearchIndexClient using aliases for the index names.
+            </summary>
+            <typeparam name="T">The document type contained in the Azure Search index.</typeparam>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1.#ctor(System.String,System.String,PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager,Microsoft.Extensions.Logging.ILogger,System.Int32,PDS.ViewYourFunding.Data.Core.ApplicationConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1"/> class.
+            </summary>
+            <param name="searchServiceName">The name of the Azure Search service.</param>
+            <param name="queryApiKey">The API key to use for search queries.</param>
+            <param name="searchServiceManager">The search service manager to use.</param>
+            <param name="loggingService">Service to use for logging.</param>
+            <param name="classThumprint">The class thumbprint for T.</param>
+            <param name="applicationConfiguration">The application configuration.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1.CountDocumentsAsync">
+            <summary>
+            Gets the number of documents in the Azure Search index.
+            </summary>
+            <returns>The number of documents in the Azure Search index.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1.SearchDocumentsAsync(System.String,Microsoft.Azure.Search.Models.SearchParameters)">
+            <summary>
+            Searches for documents in the Azure Search index.
+            </summary>
+            <param name="searchText">The search text.</param>
+            <param name="parameters">The search parameters.</param>
+            <returns>An object containing information about the result of the search.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1.CountDocumentsUsingClientAsync">
+            <summary>
+            Count the documents in the index.
+            </summary>
+            <returns>An awaitable task.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1.SearchDocumentsWithClientAsync(System.String,Microsoft.Azure.Search.Models.SearchParameters)">
+            <summary>
+            Search documents in the index.
+            </summary>
+            <param name="searchText">The text to search for (prepared into the expected format).</param>
+            <param name="parameters">The parameters to filter and paginate with.</param>
+            <returns>The results of the search.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchAliasClient`1.SetupSearchIndexClientIfRequired">
+            <summary>
+            Setup the search index if its required.
+            </summary>
+            <returns>An awaitable task.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient">
+            <summary>
+            A class exposing operations of an Azure Search Service Client.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient._client">
+            <summary>
+            The service client instance.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.SearchServiceName">
+            <summary>
+            Gets the name of the Azure Search service.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient"/> class.
+            </summary>
+            <param name="searchServiceName">The name of the search service to use.</param>
+            <param name="adminApiKey">An API key that provides access to the admin functions of the search service.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.CreateIndex``1(System.String)">
+            <summary>
+            Create an Azure Search index for the given model.
+            </summary>
+            <typeparam name="T">The type of the model on which to base the index fields.</typeparam>
+            <param name="indexName">The name of the index to create.</param>
+            <returns>The created index.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.CreateCosmosDbDataSource(System.String,PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters)">
+            <summary>
+            Create a Cosmos DB data source for Azure Search.
+            </summary>
+            <param name="dataSourceName">The name of the data source to create.</param>
+            <param name="dataSourceParameters">The data source parameters including connection and query information.</param>
+            <returns>The created data source.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.CreateIndexer(System.String,System.String,System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            Create an Azure Search indexer.
+            </summary>
+            <param name="indexerName">The name of the indexer.</param>
+            <param name="indexName">The name of the index which should be populated by this indexer.</param>
+            <param name="dataSourceName">The name of the data source for this indexer.</param>
+            <param name="updateInterval">An optional <see cref="T:System.TimeSpan"/> representing the update frequency for this indexer. Defaults to hourly if not specified.</param>
+            <returns>The created indexer.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.WaitForIndexerCompletion(System.String,System.TimeSpan)">
+            <summary>
+            Wait for the given indexer to finish indexing documents.
+            </summary>
+            <param name="indexerName">The name of the indexer to wait for.</param>
+            <param name="timeout">The maximum amount of time to wait.</param>
+            <returns>If the indexing operation completed successfully within the allotted time, then true, otherwise false.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.DeleteComponents(System.String)">
+            <summary>
+            Deletes all indexes, indexers and data sources matching the given prefix.
+            </summary>
+            <param name="prefixToDelete">The prefix of the names of components that will be deleted.</param>
+            <returns>The list of deleted index names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.GetIndexerNames">
+            <summary>
+            Get the indexer names.
+            </summary>
+            <returns>A list of indexer names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.GetIndexNames">
+            <summary>
+            Get the index names.
+            </summary>
+            <returns>A list of index names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.HasIndexerEverRan``1(System.Int32)">
+            <summary>
+            Has the indexer ever ran before.
+            </summary>
+            <param name="hash">The unique thumbprint/hash for a class definition.   </param>
+            <typeparam name="T">The class type to look up search indexs for.</typeparam>
+            <returns>True if it has ever ran, false if it hasn't.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.DeleteIndexerIfExists(System.String)">
+            <summary>
+            Deletes an existing indexer.
+            </summary>
+            <param name="indexerName"></param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.DeleteDataSourceIfExists(System.String)">
+            <summary>
+            Deletes and existing datasource.
+            </summary>
+            <param name="dataSourceName"></param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceClient.DeleteIndexIfExists(System.String)">
+            <summary>
+            Deletes an existing index.
+            </summary>
+            <param name="indexName"></param>
+            <returns>Task.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager">
+            <summary>
+            Class for managing an Azure Search service.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager._azureSearchServiceClient">
+            <summary>
+            Gets the instance of the Azure search client.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.#ctor(PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager"/> class.
+            </summary>
+            <param name="azureSearchServiceClient">The client to use to access Azure Search admin functions.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.HasIndexerEverRan``1(System.Int32)">
+            <summary>
+            Has the indexer ever ran (if false, suggests its just been created).
+            </summary>
+            <param name="hash">The hash to look for.</param>
+            <typeparam name="T">Type of search document.</typeparam>
+            <returns>True if it has ever been ran, false if it has never been ran.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.DoesIndexAndIndexerExist``1(System.Int32)">
+            <summary>
+            Does an index exist that includes the hash we passed?.
+            </summary>
+            <typeparam name="T">Type of search document.</typeparam>
+            <param name="hash">The hash to look for.</param>
+            <returns>True if the index exists, false if not.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.RebuildIndex``1(PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters)">
+            <summary>
+            Rebuild the index for the given type, using the given Cosmos DB data source.
+            </summary>
+            <typeparam name="T">The model representing the structure of the indexed documents.</typeparam>
+            <param name="cosmosDbDataSourceParameters">The parameters configuring the Cosmos DB data source.</param>
+            <returns>An async task.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.GetAllIndexNames">
+            <summary>
+            Get the index names with the prefix of the document we are setup for.
+            </summary>
+            <returns>A list of index names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.GetHashComponentsFromIndexNamesForType``1">
+            <summary>
+            Get the hash component of all index names for the given document type.
+            </summary>
+            <typeparam name="T">Type of search document.</typeparam>
+            <returns>A list containing the hash component of each index name for the given document type.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.GetHashComponentsFromIndexerNamesForType``1">
+            <summary>
+            Get the hash component of all indexer names for the given document type.
+            </summary>
+            <typeparam name="T">Type of search document.</typeparam>
+            <returns>A list containing the hash component of each indexer name for the given document type.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.AzureSearchServiceManager.CreateAndPopulateIndex``1(System.String,PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters)">
+            <summary>
+            Creates and populates an index.
+            </summary>
+            <typeparam name="T">The type of the parameter.</typeparam>
+            <param name="indexNamePrefix">The infex prefix.</param>
+            <param name="cosmosDbDataSourceParameters">The Cosmos database parameters.</param>
+            <returns>An async Task with the SearchIndexBuildResult.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.BackgroundTaskQueue">
+            <summary>
+            Implementation of <see cref="T:PDS.ViewYourFunding.Data.Interfaces.IBackgroundTaskQueue"/> using a <see cref="T:System.Collections.Concurrent.ConcurrentQueue`1"/>.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.BackgroundTaskQueue._workItems">
+            <summary>
+            The workitems queue.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.BackgroundTaskQueue._signal">
+            <summary>
+            The signal semaphore.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.BackgroundTaskQueue.QueueBackgroundWorkItem(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Queue a background task.
+            </summary>
+            <param name="workItem">The task to queue.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.BackgroundTaskQueue.DequeueAsync(System.Threading.CancellationToken)">
+            <summary>
+            Dequeue the next background task.
+            </summary>
+            <param name="cancellationToken">The cancellation token to use when waiting for the task.</param>
+            <returns>The function containing the background task.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Enums.SetupStatus">
+            <summary>
+            The status of the index/indexer/data source's setup.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.Enums.SetupStatus.NotSetup">
+            <summary>
+            Index is not yet created or at least state is not yet known.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.Enums.SetupStatus.InProgress">
+            <summary>
+            Index is currently being created.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Services.Enums.SetupStatus.Setup">
+            <summary>
+            Index is setup and ready.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Exceptions.NoMatchingIndexException">
+            <summary>
+            An exception to represent that there is no matching index found.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper">
+            <summary>
+            The Azure search helper.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper.GetSearchIndexAliasNameForType``1">
+            <summary>
+            Gets the alias name to use for the Azure Search index for the given document type.
+            </summary>
+            <typeparam name="T">The document type for which to get the alias name.</typeparam>
+            <returns>The alias name to use for the Azure Search index for the given document type.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper.GetDateTimeComponent(System.String,System.String)">
+            <summary>
+            Get the date time component from an component (e.g. index or indexer) name.
+            </summary>
+            <param name="componentName">The name of the component (e.g. index or indexer).</param>
+            <param name="componentNamePrefix">The prefix part of the component (e.g. index or indexer) name.</param>
+            <returns>A date-time long in format 'yyyyMMddhhmmss'.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper.GetHashComponent(System.String,System.String)">
+            <summary>
+            Get the hash component from an component (e.g. index or indexer) name.
+            </summary>
+            <param name="componentName">The name of the component (e.g. index or indexer).</param>
+            <param name="componentNamePrefix">The prefix part of the component (e.g. index or indexer) name.</param>
+            <returns>A hash/thumprint as an int.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper.GetSearchIndexAliasNameForType(System.Type)">
+            <summary>
+            Gets the alias name to use for the Azure Search index for the given document type.
+            </summary>
+            <param name="type">The document type for which to get the alias name.</param>
+            <returns>The alias name to use for the Azure Search index for the given document type.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper.GetClassThumbprint``1(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Get a thumbprint/hash for the class.
+            </summary>
+            <param name="additionalInputs">Other strings to serialise into the hash.</param>
+            <typeparam name="T">The type of class to get the thumbprint/hash for.</typeparam>
+            <returns>A deterministic thumbprint/hash as an int.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.Helpers.AzureSearchHelper.GetDeterministicHashCode(System.String)">
+            <summary>
+            Get a deterministic hash / thumbprint for a string.
+            https://andrewlock.net/why-is-string-gethashcode-different-each-time-i-run-my-program-in-net-core/.
+            </summary>
+            <param name="stringToHash">The string we want to hash.</param>
+            <returns>A thumbprint hash.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument">
+            <summary>
+            A class representing a document from an Azure Funding Search index.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.GroupingType">
+            <summary>
+            Gets or sets the type of grouping (e.g. LocalAuthoirty).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.GroupingReason">
+            <summary>
+            Gets or sets the type of grouping (payment or information).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.GroupName">
+            <summary>
+            Gets or sets the group name (e.g. East Midlands).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.SearchableGroupName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.GroupUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.GroupCode">
+            <summary>
+            Gets or sets a code to represent the code.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureFundingSearchDocument.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument">
+            <summary>
+            A class representing a document from an Azure Funding Search index.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.UniqueId">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ParentId">
+            <summary>
+            Gets or sets the ID of the funding this came from (if there are multiple, there will be multiple instances of this object).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.OrganisationName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.SearchableOrganisationName">
+            <summary>
+            Gets or sets the searchable provider name (strips some characters).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.OrganisationUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.OrganisationDfeNumber">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.OrganisationTown">
+            <summary>
+            Gets or sets the provider town.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.OrganisationPostcode">
+            <summary>
+            Gets or sets the provider postcode.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ParentName">
+            <summary>
+            Gets or sets name of the parent organisation group.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ParentPrimaryIdentifier">
+            <summary>
+            Gets or sets the parent organisation group's primary identifier (e.g. UKPRN).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ParentProviderType">
+            <summary>
+            Gets or sets the parent organisation groups' provider type (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ProviderType">
+            <summary>
+            Gets or sets the type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ProviderStatus">
+            <summary>
+            Gets or sets the status of provider (e.g. 'Open').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.CloseReason">
+            <summary>
+            Gets or sets the closure reason (e.g. 'Closure' or 'Not Applicable').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.ProviderSubType">
+            <summary>
+            Gets or sets the sub-type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this provider funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureProviderFundingSearchDocument.GroupingReason">
+            <summary>
+            Gets or sets the grouping reason (e.g. Payment or Information).
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult">
+            <summary>
+            Class representing the result of an Azure Search index (re)build.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult.IndexName">
+            <summary>
+            Gets or sets the name of the index that was built.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult.IndexerName">
+            <summary>
+            Gets or sets the name of the indexer.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult.DataSourceName">
+            <summary>
+            Gets or sets the name of the data source.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult.IndexerSuccess">
+            <summary>
+            Gets or sets a value indicating whether whether or not the indexer ran successfully.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult.Error">
+            <summary>
+            Gets or sets the error that occurred, if applicable.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchIndexBuildResult.HasError">
+            <summary>
+            Gets or sets a value indicating whether whether or not there was an error.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.Models.AzureSearchResult`1">
+            <summary>
+            A class representing the results of an Azure Search.
+            </summary>
+            <typeparam name="T">The document type.</typeparam>
+            <seealso cref="T:PDS.ViewYourFunding.Data.Interfaces.Models.ISearchResult`1" />
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Services.Models.AzureSearchResult`1.Documents">
+            <summary>
+            Gets or sets the collection of matching documents.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Services.QueuedHostedService">
+            <summary>
+            A <see cref="T:Microsoft.Extensions.Hosting.BackgroundService"/> that polls a task queue for work items to execute.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.QueuedHostedService.#ctor(PDS.ViewYourFunding.Data.Interfaces.IBackgroundTaskQueue,Microsoft.Extensions.Logging.ILogger{PDS.ViewYourFunding.Data.Services.QueuedHostedService})">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.Services.QueuedHostedService"/> class.
+            </summary>
+            <param name="taskQueue">The queue that will contain tasks to run.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Services.QueuedHostedService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            The method that is called when the service starts. Polls <see cref="F:PDS.ViewYourFunding.Data.Services.QueuedHostedService._taskQueue"/> for tasks to run.
+            </summary>
+            <param name="stoppingToken">The cancellation token to notify when operations should be cancelled.</param>
+            <returns>Async task.</returns>
+        </member>
+    </members>
+</doc>

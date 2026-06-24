@@ -1,0 +1,779 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PDS.ViewYourFunding.Data.API</name>
+    </assembly>
+    <members>
+        <member name="T:PDS.ViewYourFunding.Data.API.AutoMapperProfile">
+            <summary>
+            The AutoMapper Profile.
+            </summary>
+            <seealso cref="T:AutoMapper.Profile" />
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.AutoMapperProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.API.AutoMapperProfile"/> class.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Controllers.FundingController">
+            <summary>
+            Funding api controller.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.#ctor(PDS.ViewYourFunding.Data.Interfaces.IFundingSearchService,Microsoft.Extensions.Logging.ILogger{PDS.ViewYourFunding.Data.API.Controllers.FundingController},AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.API.Controllers.FundingController"/> class.
+            </summary>
+            <param name="fundingSearchService">The service to use for searching for fundings.</param>
+            <param name="loggerService">Service to use for logging.</param>
+            <param name="mapper">The AutoMapper mapper.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.GetFunding(System.String,System.Boolean)">
+            <summary>
+            Get a single instance of funding by its id.
+            </summary>
+            <param name="id">A funding id to lookup.</param>
+            <param name="waitForIndexBuild">Should we await the index (re)build (if it necessary), or cancel with an error.</param>
+            <returns>A single instance of funding, with its associated provider fundings - or null.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.SearchProviderFunding(PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest)">
+            <summary>
+            Search for provider funding.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>A response object containing the list of matching funding providers.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.SearchFunding(PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest)">
+            <summary>
+            Search for fundings by group.
+            </summary>
+            <param name="request">The funding APi search request.</param>
+            <returns>A response object containing the list of matching groups. If only one group is found, the response also contains all of the
+            fundings for provider fundings under that group.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.GroupFunding(PDS.ViewYourFunding.Data.Interfaces.Models.ISearchResult{PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument})">
+            <summary>
+            Converts the search result from the search service into a response object.
+            </summary>
+            <param name="searchResult">The search result from the service.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.GetSearchFundingResponse(PDS.ViewYourFunding.Data.Interfaces.Models.ISearchResult{PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument})">
+            <summary>
+            Converts the search result from the search service into a response object.
+            </summary>
+            <param name="searchResult">The search result from the service.</param>
+            <returns>The search response object.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.GetSearchProviderFundingResponse(PDS.ViewYourFunding.Data.Interfaces.Models.ISearchResult{PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument},System.Boolean)">
+            <summary>
+            Converts the search result from the search service into a response object.
+            </summary>
+            <param name="searchResult">The search result from the service.</param>
+            <param name="bypassGrouping">Bypass grouping and return all results.</param>
+            <returns>The search response object.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.ParentIdExcludingVersion(System.String)">
+            <summary>
+            Get the parent id, ignoring the version component.
+            </summary>
+            <param name="parentId">The parent id.</param>
+            <returns>A parent id without the version component.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.GetFundingStreamParameters(PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest)">
+            <summary>
+            Get the funding stream parameters.
+            </summary>
+            <param name="request">The request param.</param>
+            <returns>FundingStreamParameters[].</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Controllers.FundingController.GetGroupIdentifer(PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument)">
+            <summary>
+            Get the group identifier.
+            </summary>
+            <param name="document">The funding search document.</param>
+            <returns>The IFundingSearchDocument.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters">
+            <summary>
+            An optional filter to restrict the search by.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.PropertyName">
+            <summary>
+            Gets or sets the search property name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.PropertyValue">
+            <summary>
+            Gets or sets the property value to filter by.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.FilterPropertyName">
+            <summary>
+            Enum for filterable field names.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.FilterPropertyName.ParentPrimaryIdentifier">
+            <summary>
+            Filter by the parents primary identifier (e.g. LA Code) - only applicable for ProviderFunding.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.FilterPropertyName.Ukprn">
+            <summary>
+            Filter by the UKPRN.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.FilterPropertyName.PrimaryIdentifier">
+            <summary>
+            Filter by the primary identifier (e.g. LA Code).
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFilterParameters.FilterPropertyName.GroupingReason">
+            <summary>
+            Filter by the grouping reason (e.g. Payment or Information).
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding">
+            <summary>
+            A class representing a single allocation returned from a search request on the Funding API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.GroupingType">
+            <summary>
+            Gets or sets the type of grouping  (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.GroupingReason">
+            <summary>
+            Gets or sets the reason of grouping (payment or information).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.GroupName">
+            <summary>
+            Gets or sets the group name (e.g. East Midlands).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.SearchableGroupName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.GroupUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.GroupCode">
+            <summary>
+            Gets or sets a code to represent the code.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFunding.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingResponse">
+            <summary>
+            A class representing the response from a search request on the Funding API.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingResponse"/> class.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingResponse.Funding">
+            <summary>
+            Gets or sets the collection of matching funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingStreamParameters">
+            <summary>
+            The lookup data for one funding stream.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingStreamParameters.BeforeDateTime">
+            <summary>
+            Gets or sets cut off date.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingStreamParameters.FundingStreamCode">
+            <summary>
+            Gets or sets funding stream code to filter by (e.g. PSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingStreamParameters.PeriodCodes">
+            <summary>
+            Gets or sets period codes to filter on (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingStreamParameters.GroupingType">
+            <summary>
+            Gets or sets grouping type (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchFundingStreamParameters.Filters">
+            <summary>
+            Gets or sets filters to apply.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding">
+            <summary>
+            A class representing a single funding returned from a search request on the Funding API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ParentId">
+            <summary>
+            Gets or sets the ID of the funding this came from (if there are multiple, there will be multiple instances of this object).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.OrganisationName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.SearchableOrganisationName">
+            <summary>
+            Gets or sets the searchable provider name (strips some characters).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.OrganisationUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.OrganisationDfeNumber">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.OrganisationTown">
+            <summary>
+            Gets or sets the provider town.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.OrganisationPostcode">
+            <summary>
+            Gets or sets the provider postcode.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ParentName">
+            <summary>
+            Gets or sets name of the parent organisation group.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ParentPrimaryIdentifier">
+            <summary>
+            Gets or sets the parent organisation group's primary identifier (e.g. UKPRN).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ParentProviderType">
+            <summary>
+            Gets or sets the parent organisation groups' provider type (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ProviderType">
+            <summary>
+            Gets or sets the type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ProviderSubType">
+            <summary>
+            Gets or sets the sub-type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.ProviderStatus">
+            <summary>
+            Gets or sets the status of provider (e.g. 'Open').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.CloseReason">
+            <summary>
+            Gets or sets the closure reason (e.g. 'Closure' or 'Not Applicable').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this provider funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFunding.GroupingReason">
+            <summary>
+            Gets or sets the grouping reason (e.g. Payment or Information).
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFundingResponse">
+            <summary>
+            A class representing the response from a search request on the Funding API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchProviderFundingResponse.ProviderFunding">
+            <summary>
+            Gets or sets the collection of matching provider funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest">
+            <summary>
+            A colection of all the things to limit to.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest.FundingStreams">
+            <summary>
+            Gets or sets the funding streams to limit to.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest.SearchTerm">
+            <summary>
+            Gets or sets the search term to limit to.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest.WaitForIndexBuild">
+            <summary>
+            Gets or sets a value indicating whether should we wait for an index (re)build or fail if its re-building.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.DTOs.FundingApiSearchRequest.BypassGrouping">
+            <summary>
+            Gets or sets a value indicating whether to bypass the grouping and return all versions.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Helpers.ConcreteTypeConverter`1">
+            <summary>
+            An attribute helper to decorate what concrete class is to be used for an interface when serialising/deserialising.
+            Library took from https://gist.github.com/teamaton/bba69cf95b9e6766f231 (or similar blog post).
+            </summary>
+            <typeparam name="TConcrete">Implementation type to use.</typeparam>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Helpers.ConcreteTypeConverter`1.CanConvert(System.Type)">
+            <summary>
+            Simple implementation can assume it can always convert.
+            </summary>
+            <param name="objectType">Not used in this case.</param>
+            <returns>Always returns true.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Helpers.ConcreteTypeConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Deserialise a string to a an object.
+            </summary>
+            <param name="reader">A JSON reader to read the string from.</param>
+            <param name="objectType">Not used in this case.</param>
+            <param name="existingValue">The existing value. Not used in this case.</param>
+            <param name="serializer">The JSON serialiser.</param>
+            <returns>The deserialised object.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Helpers.ConcreteTypeConverter`1.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Serialise an object to a string.
+            </summary>
+            <param name="writer">The writer to write the serialised object to.</param>
+            <param name="value">The object to serialiser.</param>
+            <param name="serializer">The JSON serialiser.</param>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeHandler">
+            <summary>
+            The Toggle Authorize handler.
+            </summary>
+            <seealso cref="T:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeRequirement" />
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeRequirement)">
+            <summary>
+            Makes a decision if authorization is allowed based on a specific requirement.
+            </summary>
+            <param name="context">The authorization context.</param>
+            <param name="requirement">The requirement to evaluate.</param>
+            <returns>The result of requirement evaluation.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeRequirement">
+            <summary>
+            The toggle authorize requirement.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeRequirement.EnableOAuthSecurity">
+            <summary>
+            Gets or sets a value indicating whether to enable oauth security.
+            </summary>
+            <value>
+            Set to true if OAuth security is enabled.
+            </value>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeRequirement.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.API.Helpers.ToggleAuthorizeRequirement"/> class.
+            </summary>
+            <param name="enableOAuthSecurity">Set to true if OAuth security is enabled.</param>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding">
+            <summary>
+            An interface representing a funding returned from a search request on the Funding API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.GroupingType">
+            <summary>
+            Gets or sets the type of grouping (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.GroupingReason">
+            <summary>
+            Gets or sets the reason of grouping (payment or information).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.GroupName">
+            <summary>
+            Gets or sets the group name (e.g. East Midlands).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.SearchableGroupName">
+            <summary>
+            Gets or sets the group name without certain characters (e.g. 'EastMidlands' rather than 'East Midlands').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.GroupUkprn">
+            <summary>
+            Gets or sets the groups UKPRN (if applicable).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.GroupCode">
+            <summary>
+            Gets or sets a code to represent the code.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFunding.FundingValue">
+            <summary>
+            Gets or sets detail about the make up of this funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFundingResponse">
+            <summary>
+            An interface representing the response from a search request on the Fundings API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchFundingResponse.Funding">
+            <summary>
+            Gets or sets the collection of matching funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding">
+            <summary>
+            An interface representing a single provider funding returned from a search request on the Funding API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ParentId">
+            <summary>
+            Gets or sets the ID of the funding this came from (if there are multiple, there will be multiple instances of this object).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.FundingVersion">
+            <summary>
+            Gets or sets the version of this provider funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.OrganisationName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.SearchableOrganisationName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.OrganisationUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.OrganisationDfeNumber">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.OrganisationTown">
+            <summary>
+            Gets or sets the provider town.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.OrganisationPostcode">
+            <summary>
+            Gets or sets the provider postcode.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ParentName">
+            <summary>
+            Gets or sets name of the parent organisation group.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ParentPrimaryIdentifier">
+            <summary>
+            Gets or sets the parent organisation group's primary identifier (e.g. UKPRN).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ParentProviderType">
+            <summary>
+            Gets or sets the parent organisation groups' provider type (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ProviderType">
+            <summary>
+            Gets or sets the type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ProviderSubType">
+            <summary>
+            Gets or sets the sub-type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.ProviderStatus">
+            <summary>
+            Gets or sets the status of provider (e.g. 'Open').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.CloseReason">
+            <summary>
+            Gets or sets the closure reason (e.g. 'Closure' or 'Not Applicable').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this provider funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFunding.GroupingReason">
+            <summary>
+            Gets or sets the grouping reason (e.g. Payment or Information).
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFundingResponse">
+            <summary>
+            An interface representing the response from a provider funding search request on the Fundings API.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Interfaces.IFundingApiSearchProviderFundingResponse.ProviderFunding">
+            <summary>
+            Gets or sets the collection of matching provider fundings.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Program">
+            <summary>
+            The Program class.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.Program.MicrosoftFilterName">
+            <summary>
+            The microsoft filter name.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.Program.LoggingLevelDefault">
+            <summary>
+            The logging level default.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.API.Program.MicrosoftLoggingLevelDefault">
+            <summary>
+            The microsoft logging level default.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Program.Main(System.String[])">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Creates the host builder.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>The IHost Builder.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.API.Startup">
+            <summary>
+            The Startup class.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PDS.ViewYourFunding.Data.API.Startup"/> class.
+            </summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.API.Startup.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            Configures the services.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            Configures the specified application.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="env">The env.</param>
+        </member>
+    </members>
+</doc>

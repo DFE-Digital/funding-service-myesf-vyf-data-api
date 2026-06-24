@@ -1,0 +1,518 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PDS.ViewYourFunding.Data.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters">
+            <summary>
+            Class representing the parameters required to configure a Cosmos DB data source.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters.ConnectionString">
+            <summary>
+            Gets or sets the connection string for the Cosmos DB service. Must include the database name and account key.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters.CollectionName">
+            <summary>
+            Gets or sets the name of the collection to query.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters.Query">
+            <summary>
+            Gets or sets the query to run.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters.HashCode">
+            <summary>
+            Gets or sets the hash code for the class.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters">
+            <summary>
+            The lookup data for one funding stream.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters.BeforeDateTime">
+            <summary>
+            Gets or sets cut off date.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters.FundingStreamCode">
+            <summary>
+            Gets or sets funding stream code to filter by (e.g. PSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters.PeriodCodes">
+            <summary>
+            Gets or sets period codes to filter on (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters.GroupingType">
+            <summary>
+            Gets or sets grouping type (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters.Filters">
+            <summary>
+            Gets or sets filters to apply.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters">
+            <summary>
+            An optional filter to restrict the search by.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.PropertyName">
+            <summary>
+            Gets or sets the search property name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.PropertyValue">
+            <summary>
+            Gets or sets the property value to filter by.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.FilterPropertyName">
+            <summary>
+            Enum for filterable field names.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.FilterPropertyName.ParentPrimaryIdentifier">
+            <summary>
+            Filter by the parents primary identifier (e.g. LA Code) - only applicable for ProviderFunding.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.FilterPropertyName.Ukprn">
+            <summary>
+            Filter by the UKPRN.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.FilterPropertyName.PrimaryIdentifier">
+            <summary>
+            Filter by the primary identifier (e.g. LA Code).
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Interfaces.DTOs.SearchFilterParameters.FilterPropertyName.GroupingReason">
+            <summary>
+            Filter by the grouping reason (e.g. Payment or Information).
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClient`1">
+            <summary>
+            An interface that exposes methods for querying an aliased Azure Search index.
+            </summary>
+            <typeparam name="T">The type of the model.</typeparam>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClient`1.SearchDocumentsAsync(System.String,Microsoft.Azure.Search.Models.SearchParameters)">
+            <summary>
+            Perform an Azure Search.
+            </summary>
+            <param name="searchText">The search text.</param>
+            <param name="parameters">The search parameters.</param>
+            <returns>An object containing information about the result of the search.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClient`1.CountDocumentsAsync">
+            <summary>
+            Gets the number of documents in the Azure Search index.
+            </summary>
+            <returns>The number of documents in the Azure Search index.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClientManager">
+            <summary>
+            An interface for managing Azure Search Index Client connections by alias.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchAliasClientManager.GetSearchAliasClient``1(System.Int32)">
+            <summary>
+            Get the Search Index Client for the given type.
+            </summary>
+            <typeparam name="T">The document type of the index.</typeparam>
+            <param name="classThumbprint">The hash/thumbprint of T.</param>
+            <returns>A Search Index Client for the given type.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient">
+            <summary>
+            An interface exposing operations of an Azure Search Service Client.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.SearchServiceName">
+            <summary>
+            Gets the name of the Azure Search service.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.CreateIndex``1(System.String)">
+            <summary>
+            Create an Azure Search index for the given model.
+            </summary>
+            <typeparam name="T">The type of the model on which to base the index fields.</typeparam>
+            <param name="indexName">The name of the index to create.</param>
+            <returns>The created index.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.CreateCosmosDbDataSource(System.String,PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters)">
+            <summary>
+            Create a Cosmos DB data source for Azure Search.
+            </summary>
+            <param name="dataSourceName">The name of the data source to create.</param>
+            <param name="dataSourceParameters">The data source parameters including connection and query information.</param>
+            <returns>The created data source.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.CreateIndexer(System.String,System.String,System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            Create an Azure Search indexer.
+            </summary>
+            <param name="indexerName">The name of the indexer.</param>
+            <param name="indexName">The name of the index which should be populated by this indexer.</param>
+            <param name="dataSourceName">The name of the data source for this indexer.</param>
+            <param name="updateInterval">An optional <see cref="T:System.TimeSpan"/> representing the update frequency for this indexer. Defaults to hourly if not specified.</param>
+            <returns>The created indexer.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.WaitForIndexerCompletion(System.String,System.TimeSpan)">
+            <summary>
+            Wait for the given indexer to finish indexing documents.
+            </summary>
+            <param name="indexerName">The name of the indexer to wait for.</param>
+            <param name="timeout">The maximum amount of time to wait.</param>
+            <returns>If the indexing operation completed successfully within the allotted time, then true, otherwise false.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.DeleteComponents(System.String)">
+            <summary>
+            Deletes all indexes, indexers and data sources matching the given prefix, except those in the respective '...ToKeep' parameters.
+            </summary>
+            <param name="prefixToDelete">The prefix of the names of components that will be deleted.</param>
+            <returns>The list of deleted index names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.GetIndexNames">
+            <summary>
+            Get the index names with the prefix of the document we are setup for.
+            </summary>
+            <returns>A list of index names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.GetIndexerNames">
+            <summary>
+            Get the indexer names with the prefix of the document we are setup for.
+            </summary>
+            <returns>A list of indexer names.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceClient.HasIndexerEverRan``1(System.Int32)">
+            <summary>
+            Has the indexer ever ran (i.e. has it just been created).
+            </summary>
+            <typeparam name="T">The type of the indexer.</typeparam>
+            <param name="hash">The hash.</param>
+            <returns>
+            True if it has ever ran.
+            </returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager">
+            <summary>
+            Interface for managing an Azure Search service.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager.RebuildIndex``1(PDS.ViewYourFunding.Data.Interfaces.DTOs.CosmosDbDataSourceParameters)">
+            <summary>
+            Rebuild the index for the given type, using the given Cosmos DB data source.
+            </summary>
+            <typeparam name="T">The model representing the structure of the indexed documents.</typeparam>
+            <param name="cosmosDbDataSourceParameters">The parameters configuring the Cosmos DB data source.</param>
+            <returns>An async task.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager.HasIndexerEverRan``1(System.Int32)">
+            <summary>
+            Has the indexer ever ran.
+            </summary>
+            <param name="hash">The hash to look for.</param>
+            <typeparam name="T">Type of search document.</typeparam>
+            <returns>True if it has ever been ran, false if it has not been ran (is probably new).</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager.DoesIndexAndIndexerExist``1(System.Int32)">
+            <summary>
+            Does an index and indexer exist with the passed hash.
+            </summary>
+            <param name="hash">A hash of the class fields.</param>
+            <typeparam name="T">Type of search document.</typeparam>
+            <returns>True if it exists, false if not.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IAzureSearchServiceManager.GetAllIndexNames">
+            <summary>
+            Get the index names with the prefix of the document we are setup for.
+            </summary>
+            <returns>A list of index names.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.IBackgroundTaskQueue">
+            <summary>
+            Interface for managing a queue for background tasks.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IBackgroundTaskQueue.QueueBackgroundWorkItem(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Queue a background task.
+            </summary>
+            <param name="workItem">The task to queue.</param>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IBackgroundTaskQueue.DequeueAsync(System.Threading.CancellationToken)">
+            <summary>
+            Dequeue the next background task.
+            </summary>
+            <param name="cancellationToken">The cancellation token to use when waiting for the task.</param>
+            <returns>The function containing the background task.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.IFundingSearchService">
+            <summary>
+            An interface providing methods for searching for funding.
+            </summary>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IFundingSearchService.SearchProviderFunding(PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.String,System.Boolean)">
+            <summary>
+            Search for provider funding.
+            </summary>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="searchTerm">The search term to match.</param>
+            <param name="waitForIndexBuild">Should we wait for the index to (re)build.</param>
+            <returns>A response object containing the list of matching funding providers.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IFundingSearchService.SearchFunding(PDS.ViewYourFunding.Data.Interfaces.DTOs.FundingStreamParameters[],System.String,System.Boolean)">
+            <summary>
+            Search for funding by group.
+            </summary>
+            <param name="fundingStreamParameters">The funding streams to look up.</param>
+            <param name="searchTerm">The search term to match.</param>
+            <param name="waitForIndexBuild">Should we wait for the index to (re)build.</param>
+            <returns>A response object containing the list of matching groups. If only one group is found, the response also contains all of the
+            fundings for provider fundings under that group.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IFundingSearchService.GetProviderFunding(System.String,System.Boolean)">
+            <summary>
+            Get the provider funding for a specific funding.
+            </summary>
+            <param name="parentId">The if of parent funding id to get provider funding for.</param>
+            <param name="waitForIndexBuild">Should we await the index (re)build (if it necessary), or cancel with an error.</param>
+            <returns>Funding providers that make up the funding.</returns>
+        </member>
+        <member name="M:PDS.ViewYourFunding.Data.Interfaces.IFundingSearchService.GetFunding(System.String,System.Boolean)">
+            <summary>
+            Get a single instance of funding by its id.
+            </summary>
+            <param name="id">A funding id to lookup.</param>
+            <param name="waitForIndexBuild">Should we await the index (re)build (if it necessary), or cancel with an error.</param>
+            <returns>A single instance of funding, with its associated provider funding - or null.</returns>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument">
+            <summary>
+            An interface representing a document from an Funding Search.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.GroupingType">
+            <summary>
+            Gets or sets the type of grouping (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.GroupingReason">
+            <summary>
+            Gets or sets the type of grouping (payment or information).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.GroupName">
+            <summary>
+            Gets or sets the group name (e.g. East Midlands).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.SearchableGroupName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.GroupUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.GroupCode">
+            <summary>
+            Gets or sets a code to represent the code.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IFundingSearchDocument.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this funding.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument">
+            <summary>
+            An interface representing a document from a Provider Funding Search.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.Id">
+            <summary>
+            Gets or sets the unique id for the funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ParentId">
+            <summary>
+            Gets or sets the ID of the funding this came from (if there are multiple, there will be multiple instances of this object).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.FundingPeriodCode">
+            <summary>
+            Gets or sets the funding period code for this funding (e.g. AY-1920).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.FundingStreamCode">
+            <summary>
+            Gets or sets the funding stream code (e.g. DSG).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.StatusChangedDate">
+            <summary>
+            Gets or sets the date and time this allocation was published.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.FundingVersion">
+            <summary>
+            Gets or sets the version of this allocation.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.SchemaVersion">
+            <summary>
+            Gets or sets the version of the schema.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.TemplateVersion">
+            <summary>
+            Gets or sets the version of the template.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.OrganisationName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.SearchableOrganisationName">
+            <summary>
+            Gets or sets the provider name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.OrganisationUkprn">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.OrganisationDfeNumber">
+            <summary>
+            Gets or sets the provider establishment number.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.OrganisationTown">
+            <summary>
+            Gets or sets the provider town.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.OrganisationPostcode">
+            <summary>
+            Gets or sets the provider postcode.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ParentName">
+            <summary>
+            Gets or sets name of the parent organisation group.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ParentPrimaryIdentifier">
+            <summary>
+            Gets or sets the parent organisation group's primary identifier (e.g. UKPRN).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ParentProviderType">
+            <summary>
+            Gets or sets the parent organisation groups' provider type (e.g. LocalAuthority).
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ProviderType">
+            <summary>
+            Gets or sets the type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ProviderSubType">
+            <summary>
+            Gets or sets the sub-type of provider.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.ProviderStatus">
+            <summary>
+            Gets or sets the status of provider (e.g. 'Open').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.CloseReason">
+            <summary>
+            Gets or sets the closure reason (e.g. 'Closure' or 'Not Applicable').
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.TotalAmount">
+            <summary>
+            Gets or sets the total amount of this funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.FundingValue">
+            <summary>
+            Gets or sets detail about the makeup of this provider funding.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.IProviderFundingSearchDocument.GroupingReason">
+            <summary>
+            Gets or sets the grouping reason (e.g. Payment or Information).
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Interfaces.Models.ISearchResult`1">
+            <summary>
+            An interface representing the result of a search.
+            </summary>
+            <typeparam name="T">The type of the search result documents.</typeparam>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Interfaces.Models.ISearchResult`1.Documents">
+            <summary>
+            Gets or sets the collection of matching documents.
+            </summary>
+        </member>
+    </members>
+</doc>

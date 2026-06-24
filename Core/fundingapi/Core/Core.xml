@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PDS.ViewYourFunding.Data.Core</name>
+    </assembly>
+    <members>
+        <member name="T:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration">
+            <summary>
+            The Application configuration class.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.ApplicationInsightsKey">
+            <summary>
+            Gets or sets the applications insights key.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.Environment">
+            <summary>
+            Gets or sets the environment.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.BuildConfiguration">
+            <summary>
+            Gets or sets the build configuration.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.EnableOAuthSecurity">
+            <summary>
+            Gets or sets a value indicating whether the API should be secure using OAuth.
+            </summary>
+            <value>
+             Set to true if OAuth security is enabled on the API.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.Repositories">
+            <summary>
+            Gets or sets the repositories.
+            </summary>
+            <value>
+            The repositories.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.Logging">
+            <summary>
+            Gets or sets the logging configuration.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.ApplicationConfiguration.SearchIndexClientTimeoutInSeconds">
+            <summary>
+            Gets or sets the search index client timeout in seconds.
+            </summary>
+            <value>
+            The search index client timeout in seconds.
+            </value>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.Authentication">
+            <summary>
+            The Authentication configuration.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Authentication.Instance">
+            <summary>
+            Gets or sets the instance.
+            </summary>
+            <value>
+            The instance.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Authentication.ClientId">
+            <summary>
+            Gets or sets the client identifier.
+            </summary>
+            <value>
+            The client identifier.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Authentication.TenantId">
+            <summary>
+            Gets or sets the tenant identifier.
+            </summary>
+            <value>
+            The tenant identifier.
+            </value>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.Configuration.AzureSearchConfiguration">
+            <summary>
+            The Azure Search configuration.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Configuration.AzureSearchConfiguration.AdminKey">
+            <summary>
+            Gets or sets the funding azure search admin key.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Configuration.AzureSearchConfiguration.Name">
+            <summary>
+            Gets or sets the funding azure search name.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Configuration.AzureSearchConfiguration.QueryKey">
+            <summary>
+            Gets or sets the funding azure search query key.
+            </summary>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.Configuration.RepositoriesConfiguration">
+            <summary>
+            The Repositories Configuration.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Configuration.RepositoriesConfiguration.AzureSearch">
+            <summary>
+            Gets or sets the azure search.
+            </summary>
+            <value>
+            The azure search.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.Configuration.RepositoriesConfiguration.CosmosDb">
+            <summary>
+            Gets or sets the cosmos database.
+            </summary>
+            <value>
+            The cosmos database.
+            </value>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.CosmosDbConfiguration">
+            <summary>
+            The Cosmos Db config.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.CosmosDbConfiguration.ConnectionString">
+            <summary>
+            Gets or sets the funding cosmos database connection string.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.CosmosDbConfiguration.FundingCollection">
+            <summary>
+            Gets or sets the funding collection.
+            </summary>
+            <value>
+            The funding collection.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.CosmosDbConfiguration.FundingQuery">
+            <summary>
+            Gets or sets the funding query.
+            </summary>
+            <value>
+            The funding query.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.CosmosDbConfiguration.ProviderFundingCollection">
+            <summary>
+            Gets or sets the provider funding collection.
+            </summary>
+            <value>
+            The provider funding collection.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.CosmosDbConfiguration.ProviderFundingQuery">
+            <summary>
+            Gets or sets the provider funding query.
+            </summary>
+            <value>
+            The provider funding query.
+            </value>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.LoggingConfiguration">
+            <summary>
+            The Logging Class.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.LoggingConfiguration.ApplicationInsightsRoleName">
+            <summary>
+            Gets or sets the name of the application insights role.
+            </summary>
+            <value>
+            The name of the application insights role.
+            </value>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.LoggingConfiguration.LogLevel">
+            <summary>
+            Gets or sets the log level.
+            </summary>
+            <value>
+            The log level.
+            </value>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.LogLevel">
+            <summary>
+            The LogLevel class.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.LogLevel.Default">
+            <summary>
+            Gets or sets the default log level.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.LogLevel.Microsoft">
+            <summary>
+            Gets or sets the Microsoft default log level.
+            </summary>
+        </member>
+        <member name="P:PDS.ViewYourFunding.Data.Core.LogLevel.MicrosoftHostingLifetime">
+            <summary>
+            Gets or sets the microsoft hosting lifetime.
+            </summary>
+            <value>
+            The microsoft hosting lifetime.
+            </value>
+        </member>
+        <member name="T:PDS.ViewYourFunding.Data.Core.Constants">
+            <summary>
+            The Funding API Core Constants.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Core.Constants.CosmosDbDefaultFundingQuery">
+            <summary>
+            The cosmos database default funding query.
+            </summary>
+        </member>
+        <member name="F:PDS.ViewYourFunding.Data.Core.Constants.CosmosDbDefaultProviderFundingQuery">
+            <summary>
+            The cosmos database default provider funding query.
+            </summary>
+        </member>
+    </members>
+</doc>
