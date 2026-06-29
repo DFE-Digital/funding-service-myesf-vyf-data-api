@@ -1,23 +1,40 @@
-# Introduction 
-This is the Funding API solution.
+# Manage Your Education and Skills Funding VYF Data API
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-	As a MYESF developer you will need to download the appsettings.json from the following location https://sfa-gov-uk.visualstudio.com/Provider%20Digital%20Services/_wiki/wikis/Provider-Digital-Services.wiki/4346/Funding-API-Local-App.Settings
+The Manage Your Education and Skills Funding (MYESF) VYF Data API provides backend services used by MYESF applications to manage and retrieve funding-related and provider data.
 
+This API supports:
+- Retrieval and processing of funding data
+- Integration with storage and caching services
+- Serving data to internal MYESF services and applications
 
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+The service is part of the wider DfE Funding Service ecosystem and will evolve to include additional shared/common functionality where required.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+---
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Provider
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+https://www.gov.uk/government/organisations/department-for-education
+
+---
+
+## About this project
+
+This project is an ASP.NET Core Web API.
+
+- Runs on Azure App Service
+- Uses Azure-based services such as Application Insights and Storage
+- Uses Redis for distributed caching (via Docker locally)
+
+---
+
+# Local Configuration Guide
+
+To run the application locally, you must create a valid `appsettings.json` file.
+
+A template file (`appsettings.example.json`) is included in the repository and should be used as a base.
+
+---
+
+## Application Setup
+
+1. Navigate to the API project:

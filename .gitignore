@@ -7,6 +7,9 @@ appsettings.json
 appsettings.*.json
 local.settings.*.json
 
+# Allow example config
+!appsettings.example.json
+
 # User-specific files
 *.suo
 *.user
