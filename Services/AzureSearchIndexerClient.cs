@@ -62,8 +62,8 @@ namespace PDS.ViewYourFunding.Data.Services
         {
             var indexer = new SearchIndexer(indexerName, dataSourceName, indexName)
             {
-                Schedule = new(updateInterval ?? TimeSpan.FromHours(1)),
-                Parameters = new() { BatchSize = 100, },
+                Schedule = new (updateInterval ?? TimeSpan.FromHours(1)),
+                Parameters = new () { BatchSize = 100, },
             };
 
             return await _client.CreateIndexerAsync(indexer);

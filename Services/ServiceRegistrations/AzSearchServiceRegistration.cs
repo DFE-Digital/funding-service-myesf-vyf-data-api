@@ -19,7 +19,7 @@ namespace PDS.ViewYourFunding.Data.Services.ServiceRegistrations
             {
                 var configuration = serviceProvider.GetRequiredService<IOptions<ApplicationConfiguration>>().Value;
 
-                Uri searchServiceEndPoint = new($"https://{configuration.Repositories.AzureSearch.Name}.search.windows.net");
+                Uri searchServiceEndPoint = new ($"https://{configuration.Repositories.AzureSearch.Name}.search.windows.net");
                 string adminApiKey = configuration.Repositories.AzureSearch.AdminKey;
 
                 var searchIndexClient = new SearchIndexClient(searchServiceEndPoint, new AzureKeyCredential(adminApiKey));
