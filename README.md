@@ -42,14 +42,8 @@ In order to run the application locally a valid `appsettings.json` file will nee
     "Instance": "https://login.microsoftonline.com/",
     "TenantId": ""
   },
-  "Environment": "",
-  "Authentication": {
-    "ClientId": "",
-    "Instance": "https://login.microsoftonline.com/",
-    "TenantId": ""
-  },
-  "EnableOauthSecurity": "",
-
+  "Environment": "local",
+  "EnableOauthSecurity": "true",
   "Logging": {
     "ApplicationInsights": {
       "LogLevel": {
@@ -61,12 +55,10 @@ In order to run the application locally a valid `appsettings.json` file will nee
       "Default": "Information"
     }
   },
-
   "PdsApplicationInsights": {
     "InstrumentationKey": "",
-    "Environment": ""
+    "Environment": "local"
   },
-
   "Repositories": {
     "AzureSearch": {
       "AdminKey": "",
@@ -79,27 +71,12 @@ In order to run the application locally a valid `appsettings.json` file will nee
       "ProviderFundingCollection": ""
     }
   },
-
   "StorageAccount": {
     "AccountName": "",
     "AccountKey": ""
   },
-
-  "StorageCache": {
-    "ConnectionString": "",
-    "ItemLifetimeInMinutes": "480"
-  },
-
   "RestrictedFundingStreamCodes": "",
-  "FilterOnFundingVersion": "",
-  "RestrictedVariationReasons": "",
-
-  "AzureSearch": {
-    "ChangeInIndex": {
-      "LoggedIn_Parent": "",
-      "LoggedIn_Child": ""
-    }
-  }
+  "RestrictedVariationReasons": ""
 }
 ```
 
@@ -119,15 +96,6 @@ In order to run the application locally a valid `appsettings.json` file will nee
 
 - **`Environment`**  
   The environment the application is running within, such as Local, Dev, Test, AT or Production.
-
-- **`Authentication:ClientId`**  
-  The client identifier used when requesting authentication tokens to access protected resources.
-
-- **`Authentication:Instance`**  
-  The authentication authority endpoint used when obtaining access tokens.
-
-- **`Authentication:TenantId`**  
-  The tenant identifier associated with the application's Azure Active Directory registration.
 
 - **`EnableOauthSecurity`**  
   Determines whether OAuth authentication and authorisation are enforced by the API.
@@ -171,26 +139,11 @@ In order to run the application locally a valid `appsettings.json` file will nee
 - **`StorageAccount:AccountKey`**  
   The access key associated with the configured Azure Storage Account.
 
-- **`StorageCache:ConnectionString`**  
-  The Redis cache connection string used for distributed caching.
-
-- **`StorageCache:ItemLifetimeInMinutes`**  
-  The default duration that cached items remain valid before expiring.
-
 - **`RestrictedFundingStreamCodes`**  
   A comma-separated list of funding stream codes which should be treated as restricted.
 
-- **`FilterOnFundingVersion`**  
-  Determines whether funding data should be filtered based on funding version.
-
 - **`RestrictedVariationReasons`**  
   A comma-separated list of variation reasons that should be treated as restricted.
-
-- **`AzureSearch:ChangeInIndex:LoggedIn_Parent`**  
-  Determines whether change-in-index information is available to parent users.
-
-- **`AzureSearch:ChangeInIndex:LoggedIn_Child`**  
-  Determines whether change-in-index information is available to child users.
 
 ## Environment Setup
 
@@ -202,6 +155,5 @@ Before running the application locally:
 4. Ensure you have access to the Azure Cosmos DB instance and collections containing funding data.
 5. Ensure you have access to the Azure AI Search service and indexes used by the application.
 6. Ensure you have access to the configured Azure Storage Account.
-7. Ensure the configured Redis Cache instance is accessible.
 8. Verify Application Insights configuration has been populated if local telemetry is required.
 9. Restore project dependencies and run the API locally.
