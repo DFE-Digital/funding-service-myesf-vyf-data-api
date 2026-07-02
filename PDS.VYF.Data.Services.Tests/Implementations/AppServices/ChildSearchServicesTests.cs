@@ -917,161 +917,232 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             var parentUkprn = "10064281";
 
             var mockSearchIndexResult = new List<LoggedInParentAzSearchModel>
+    {
+        new LoggedInParentAzSearchModel
+        {
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(0001, 01, 01),
+            FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
+            GroupUkprn = parentUkprn,
+            IsParent = false,
+            ProviderFundings = new List<string>
             {
-                new LoggedInParentAzSearchModel
-                {
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(0001, 01, 01),
-                    FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
-                    GroupUkprn = "10064281",
-                    IsParent = false,
-                    ProviderFundings = new List<string>
-                    {
-                        "GAG-AC-2425-10081183-1_0",
-                        "GAG-AC-2425-10063092-1_0",
-                        "GAG-AC-2425-10061924-1_0",
-                        "GAG-AC-2425-10061926-1_0",
-                        "GAG-AC-2425-10061930-1_0",
-                        "GAG-AC-2425-10061932-1_0"
-                    },
-                    ChildUKPRNs = new List<string>
-                    {
-                        "10081183",
-                        "10063092",
-                        "10061924",
-                        "10061926",
-                        "10061930",
-                        "10061932",
-                    }
-                },
-            };
+                "GAG-AC-2425-10081183-1_0",
+                "GAG-AC-2425-10063092-1_0",
+                "GAG-AC-2425-10061924-1_0",
+                "GAG-AC-2425-10061926-1_0",
+                "GAG-AC-2425-10061930-1_0",
+                "GAG-AC-2425-10061932-1_0"
+            },
+            ChildUKPRNs = new List<string>
+            {
+                "10081183",
+                "10063092",
+                "10061924",
+                "10061926",
+                "10061930",
+                "10061932"
+            }
+        }
+    };
 
             var mockparentresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10081183-1_0",
+            OrganisationUkprn = "10081183",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10081183-1_0",
-                    OrganisationUkprn = "10081183",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10081183-2_0",
-                    OrganisationUkprn = "10081183",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 2,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10063092-1_0",
-                    OrganisationUkprn = "10063092",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061926-1_0",
-                    OrganisationUkprn = "10061926",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061924-1_0",
-                    OrganisationUkprn = "10061924",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061930-1_0",
-                    OrganisationUkprn = "10061930",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061932-1_0",
-                    OrganisationUkprn = "10061932",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                }
-            };
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10081183-2_0",
+            OrganisationUkprn = "10081183",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 2,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10063092-1_0",
+            OrganisationUkprn = "10063092",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061926-1_0",
+            OrganisationUkprn = "10061926",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061924-1_0",
+            OrganisationUkprn = "10061924",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061930-1_0",
+            OrganisationUkprn = "10061930",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061932-1_0",
+            OrganisationUkprn = "10061932",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        }
+    };
 
-            string[] inYearOpenerIds = new string[]
+            string[] inYearOpenerIds =
             {
-               "GAG-AC-2425-10081183-2_0"
+        "GAG-AC-2425-10081183-2_0"
             };
 
             var expectedresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10081183-1_0",
+            OrganisationUkprn = "10081183",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10081183-1_0",
-                    OrganisationUkprn = "10081183",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                    InYearOpener = false
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10063092-1_0",
-                    OrganisationUkprn = "10063092",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                    InYearOpener = false
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061924-1_0",
-                    OrganisationUkprn = "10061924",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                    InYearOpener = false
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061926-1_0",
-                    OrganisationUkprn = "10061926",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                    InYearOpener = false
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061930-1_0",
-                    OrganisationUkprn = "10061930",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                    InYearOpener = false
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10061932-1_0",
-                    OrganisationUkprn = "10061932",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 03, 15),
-                    InYearOpener = false
-                }
-            };
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10063092-1_0",
+            OrganisationUkprn = "10063092",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061924-1_0",
+            OrganisationUkprn = "10061924",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061926-1_0",
+            OrganisationUkprn = "10061926",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061930-1_0",
+            OrganisationUkprn = "10061930",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10061932-1_0",
+            OrganisationUkprn = "10061932",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 03, 15),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel { ParentUKPRN = parentUkprn }
+            }
+        }
+    };
 
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Parent, mockSearchIndexResult);
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Parent,
+                mockSearchIndexResult);
+
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Child,
+                mockparentresult);
+
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
             ChildRequest childRequest = new()
@@ -1082,7 +1153,10 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
-            var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
+            var result = await childSearchServices.SearchChildrenOfAParent(
+                parentUkprn,
+                childRequest,
+                default);
 
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(expectedresult);
@@ -1100,110 +1174,178 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             var parentUkprn = "10094589";
 
             var mockSearchIndexResult = new List<LoggedInParentAzSearchModel>
+    {
+        new LoggedInParentAzSearchModel
+        {
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(0001, 01, 01),
+            FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
+            GroupUkprn = parentUkprn,
+            IsParent = false,
+            ProviderFundings = new List<string>
             {
-                new LoggedInParentAzSearchModel
-                {
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(0001, 01, 01),
-                    FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
-                    GroupUkprn = "10094589",
-                    IsParent = false,
-                    ProviderFundings = new List<string>
-                    {
-                        "GAG-AC-2425-10094559-1_0",
-                        "GAG-AC-2425-10095254-1_0",
-                        "GAG-AC-2425-10094509-1_0",
-                        "GAG-AC-2425-10094560-1_0"
-                    },
-                    ChildUKPRNs = new List<string>
-                    {
-                        "10094559",
-                        "10095254",
-                        "10094509",
-                        "10094560"
-                    }
-                },
-            };
+                "GAG-AC-2425-10094559-1_0",
+                "GAG-AC-2425-10095254-1_0",
+                "GAG-AC-2425-10094509-1_0",
+                "GAG-AC-2425-10094560-1_0"
+            },
+            ChildUKPRNs = new List<string>
+            {
+                "10094559",
+                "10095254",
+                "10094509",
+                "10094560"
+            }
+        }
+    };
 
             var mockparentresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10095254-1_0",
+            OrganisationUkprn = "10095254",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 25),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
+                new LoggedInParentInfoModel
                 {
-                    Id = "GAG-AC-2425-10095254-1_0",
-                    OrganisationUkprn = "10095254",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 25),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094560-1_0",
-                    OrganisationUkprn = "10094560",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094559-1_0",
-                    OrganisationUkprn = "10094559",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 05, 07),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094509-1_0",
-                    OrganisationUkprn = "10094509",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
+                    ParentUKPRN = parentUkprn
                 }
-            };
-
-            string[] inYearOpenerIds = new string[]
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094560-1_0",
+            OrganisationUkprn = "10094560",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-            };
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094559-1_0",
+            OrganisationUkprn = "10094559",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 05, 07),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094509-1_0",
+            OrganisationUkprn = "10094509",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        }
+    };
+
+            string[] inYearOpenerIds = Array.Empty<string>();
 
             var expectedresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10095254-1_0",
+            OrganisationUkprn = "10095254",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 25),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
+                new LoggedInParentInfoModel
                 {
-                    Id = "GAG-AC-2425-10095254-1_0",
-                    OrganisationUkprn = "10095254",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 25),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094560-1_0",
-                    OrganisationUkprn = "10094560",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094559-1_0",
-                    OrganisationUkprn = "10094559",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 05, 07),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094509-1_0",
-                    OrganisationUkprn = "10094509",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
+                    ParentUKPRN = parentUkprn
                 }
-            };
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094560-1_0",
+            OrganisationUkprn = "10094560",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094559-1_0",
+            OrganisationUkprn = "10094559",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 05, 07),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094509-1_0",
+            OrganisationUkprn = "10094509",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        }
+    };
 
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Parent, mockSearchIndexResult);
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Parent,
+                mockSearchIndexResult);
+
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Child,
+                mockparentresult);
+
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
             ChildRequest childRequest = new()
@@ -1214,7 +1356,10 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
-            var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
+            var result = await childSearchServices.SearchChildrenOfAParent(
+                parentUkprn,
+                childRequest,
+                default);
 
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(expectedresult);
@@ -1232,85 +1377,136 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             var parentUkprn = "10094589";
 
             var mockSearchIndexResult = new List<LoggedInParentAzSearchModel>
+    {
+        new LoggedInParentAzSearchModel
+        {
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(0001, 01, 01),
+            FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
+            GroupUkprn = parentUkprn,
+            IsParent = false,
+            ProviderFundings = new List<string>
             {
-                new LoggedInParentAzSearchModel
-                {
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(0001, 01, 01),
-                    FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
-                    GroupUkprn = "10094589",
-                    IsParent = false,
-                    ProviderFundings = new List<string>
-                    {
-                        "GAG-AC-2425-10094559-1_0",
-                        "GAG-AC-2425-10095254-1_0",
-                        "GAG-AC-2425-10094509-1_0",
-                        "GAG-AC-2425-10094560-1_0"
-                    },
-                    ChildUKPRNs = new List<string>
-                    {
-                        "10094559",
-                        "10095254",
-                        "10094509",
-                        "10094560",
-                    }
-                },
-            };
+                "GAG-AC-2425-10094559-1_0",
+                "GAG-AC-2425-10095254-1_0",
+                "GAG-AC-2425-10094509-1_0",
+                "GAG-AC-2425-10094560-1_0"
+            },
+            ChildUKPRNs = new List<string>
+            {
+                "10094559",
+                "10095254",
+                "10094509",
+                "10094560",
+            }
+        },
+    };
 
             var mockparentresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10095254-1_0",
+            OrganisationUkprn = "10095254",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 25),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
+                new LoggedInParentInfoModel
                 {
-                    Id = "GAG-AC-2425-10095254-1_0",
-                    OrganisationUkprn = "10095254",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 25),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094560-1_0",
-                    OrganisationUkprn = "10094560",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094559-1_0",
-                    OrganisationUkprn = "10094559",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 05, 07),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094509-1_0",
-                    OrganisationUkprn = "10094509",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
+                    ParentUKPRN = parentUkprn
                 }
-            };
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094560-1_0",
+            OrganisationUkprn = "10094560",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094559-1_0",
+            OrganisationUkprn = "10094559",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 05, 07),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094509-1_0",
+            OrganisationUkprn = "10094509",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        }
+    };
 
-            string[] inYearOpenerIds = new string[] { "GAG-AC-2425-10094560-1_0", "GAG-AC-2425-10094559-1_0", "GAG-AC-2425-10094509-1_0" };
+            string[] inYearOpenerIds =
+            {
+        "GAG-AC-2425-10094560-1_0",
+        "GAG-AC-2425-10094559-1_0",
+        "GAG-AC-2425-10094509-1_0"
+    };
 
             var expectedresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10095254-1_0",
+            OrganisationUkprn = "10095254",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 25),
+            InYearOpener = false,
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
+                new LoggedInParentInfoModel
                 {
-                    Id = "GAG-AC-2425-10095254-1_0",
-                    OrganisationUkprn = "10095254",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 25),
-                    InYearOpener = false
-                },
-            };
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        }
+    };
 
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Parent, mockSearchIndexResult);
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Parent,
+                mockSearchIndexResult);
+
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Child,
+                mockparentresult);
+
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
             ChildRequest childRequest = new()
@@ -1321,7 +1517,10 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
-            var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
+            var result = await childSearchServices.SearchChildrenOfAParent(
+                parentUkprn,
+                childRequest,
+                default);
 
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(expectedresult);
@@ -1339,108 +1538,183 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             var parentUkprn = "10094589";
 
             var mockSearchIndexResult = new List<LoggedInParentAzSearchModel>
+    {
+        new LoggedInParentAzSearchModel
+        {
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(0001, 01, 01),
+            FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
+            GroupUkprn = parentUkprn,
+            IsParent = false,
+            ProviderFundings = new List<string>
             {
-                new LoggedInParentAzSearchModel
-                {
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(0001, 01, 01),
-                    FundingStreamGroupingTypeReason = "GAG-AcademyTrust-Payment",
-                    GroupUkprn = "10094589",
-                    IsParent = false,
-                    ProviderFundings = new List<string>
-                    {
-                        "GAG-AC-2425-10094559-1_0",
-                        "GAG-AC-2425-10095254-1_0",
-                        "GAG-AC-2425-10094509-1_0",
-                        "GAG-AC-2425-10094560-1_0"
-                    },
-                    ChildUKPRNs = new List<string>
-                    {
-                        "10094559",
-                        "10095254",
-                        "10094509",
-                        "10094560",
-                    }
-                },
-            };
+                "GAG-AC-2425-10094559-1_0",
+                "GAG-AC-2425-10095254-1_0",
+                "GAG-AC-2425-10094509-1_0",
+                "GAG-AC-2425-10094560-1_0"
+            },
+            ChildUKPRNs = new List<string>
+            {
+                "10094559",
+                "10095254",
+                "10094509",
+                "10094560",
+            }
+        },
+    };
 
             var mockparentresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10095254-1_0",
+            OrganisationUkprn = "10095254",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 25),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
+                new LoggedInParentInfoModel
                 {
-                    Id = "GAG-AC-2425-10095254-1_0",
-                    OrganisationUkprn = "10095254",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 25),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094560-1_0",
-                    OrganisationUkprn = "10094560",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094559-1_0",
-                    OrganisationUkprn = "10094559",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 05, 07),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094509-1_0",
-                    OrganisationUkprn = "10094509",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
+                    ParentUKPRN = parentUkprn
                 }
-            };
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094560-1_0",
+            OrganisationUkprn = "10094560",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094559-1_0",
+            OrganisationUkprn = "10094559",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 05, 07),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094509-1_0",
+            OrganisationUkprn = "10094509",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        }
+    };
 
-            string[] inYearOpenerIds = new string[] { "GAG-AC-2425-10094560-1_0", "GAG-AC-2425-10094559-1_0", "GAG-AC-2425-10094509-1_0" };
+            string[] inYearOpenerIds =
+            {
+        "GAG-AC-2425-10094560-1_0",
+        "GAG-AC-2425-10094559-1_0",
+        "GAG-AC-2425-10094509-1_0"
+            };
 
             var expectedresult = new List<LoggedInChildAzSearchModel>
+    {
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10095254-1_0",
+            OrganisationUkprn = "10095254",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 25),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
             {
-                new LoggedInChildAzSearchModel
+                new LoggedInParentInfoModel
                 {
-                    Id = "GAG-AC-2425-10095254-1_0",
-                    OrganisationUkprn = "10095254",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 25),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094560-1_0",
-                    OrganisationUkprn = "10094560",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094559-1_0",
-                    OrganisationUkprn = "10094559",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 05, 07),
-                },
-                new LoggedInChildAzSearchModel
-                {
-                    Id = "GAG-AC-2425-10094509-1_0",
-                    OrganisationUkprn = "10094509",
-                    FundingStreamPeriod = "GAG-AC-2425",
-                    FundingVersionInt = 1,
-                    StatusChangedDate = new DateTime(2024, 04, 09),
+                    ParentUKPRN = parentUkprn
                 }
-            };
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094560-1_0",
+            OrganisationUkprn = "10094560",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094559-1_0",
+            OrganisationUkprn = "10094559",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 05, 07),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        },
+        new LoggedInChildAzSearchModel
+        {
+            Id = "GAG-AC-2425-10094509-1_0",
+            OrganisationUkprn = "10094509",
+            FundingStreamPeriod = "GAG-AC-2425",
+            FundingVersionInt = 1,
+            StatusChangedDate = new DateTime(2024, 04, 09),
+            YearFrom = 2024,
+            ParentInfo = new List<LoggedInParentInfoModel>
+            {
+                new LoggedInParentInfoModel
+                {
+                    ParentUKPRN = parentUkprn
+                }
+            }
+        }
+    };
 
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Parent, mockSearchIndexResult);
-            mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Parent,
+                mockSearchIndexResult);
+
+            mockAzSearchSearchingServices.SetupSearchDocumentAsync(
+                AzSearchIndexTypeEnum.LoggedIn_Child,
+                mockparentresult);
+
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
             ChildRequest childRequest = new()
@@ -1451,7 +1725,10 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
-            var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
+            var result = await childSearchServices.SearchChildrenOfAParent(
+                parentUkprn,
+                childRequest,
+                default);
 
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(expectedresult);
