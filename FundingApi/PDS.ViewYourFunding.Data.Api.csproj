@@ -39,12 +39,4 @@
     <ProjectReference Include="..\Services\PDS.ViewYourFunding.Data.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="appsettings.Dev.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
