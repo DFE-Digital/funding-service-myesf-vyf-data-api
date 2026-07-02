@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PDS.ViewYourFunding.Data.API.DTOs;
 using PDS.ViewYourFunding.Data.API.Helpers;
-using PDS.ViewYourFunding.Data.API.Interfaces;
 using PDS.VYF.Data.Services.Abstracts.AppServices;
-using PDS.VYF.Data.Services.Abstracts.InfraServices;
-using PDS.VYF.Data.Services.Implementations.AppServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
 using PDS.VYF.Data.Services.Models.RequestModels;
 using System.Collections.Generic;

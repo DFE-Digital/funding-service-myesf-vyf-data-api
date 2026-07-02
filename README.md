@@ -37,18 +37,19 @@ In order to run the application locally a valid `appsettings.json` file will nee
 ```json
 {
   "AzureAd": {
-    "Audience": "[Azure AD Audience]",
-    "ClientId": "[Azure AD Client ID]",
+    "Audience": "",
+    "ClientId": "",
     "Instance": "https://login.microsoftonline.com/",
-    "TenantId": "[Azure AD Tenant ID]"
+    "TenantId": ""
   },
-  "Environment": "[Environment]",
+  "Environment": "",
   "Authentication": {
-    "ClientId": "[Application Client ID]",
+    "ClientId": "",
     "Instance": "https://login.microsoftonline.com/",
-    "TenantId": "[Tenant ID]"
+    "TenantId": ""
   },
-  "EnableOauthSecurity": true,
+  "EnableOauthSecurity": "",
+
   "Logging": {
     "ApplicationInsights": {
       "LogLevel": {
@@ -60,37 +61,43 @@ In order to run the application locally a valid `appsettings.json` file will nee
       "Default": "Information"
     }
   },
+
   "PdsApplicationInsights": {
-    "InstrumentationKey": "[Application Insights Instrumentation Key]",
-    "Environment": "[Environment]"
+    "InstrumentationKey": "",
+    "Environment": ""
   },
+
   "Repositories": {
     "AzureSearch": {
-      "AdminKey": "[Azure Search Admin Key]",
-      "Name": "[Azure Search Service Name]",
-      "QueryKey": "[Azure Search Query Key]"
+      "AdminKey": "",
+      "Name": "",
+      "QueryKey": ""
     },
     "CosmosDb": {
-      "ConnectionString": "[Cosmos DB Connection String]",
-      "FundingCollection": "[Funding Collection Name]",
-      "ProviderFundingCollection": "[Provider Funding Collection Name]"
+      "ConnectionString": "",
+      "FundingCollection": "",
+      "ProviderFundingCollection": ""
     }
   },
+
   "StorageAccount": {
-    "AccountName": "[Storage Account Name]",
-    "AccountKey": "[Storage Account Key]"
+    "AccountName": "",
+    "AccountKey": ""
   },
+
   "StorageCache": {
-    "ConnectionString": "[Redis Connection String]",
+    "ConnectionString": "",
     "ItemLifetimeInMinutes": "480"
   },
-  "RestrictedFundingStreamCodes": "[Funding Stream Codes]",
-  "FilterOnFundingVersion": true,
-  "RestrictedVariationReasons": "[Variation Reasons]",
+
+  "RestrictedFundingStreamCodes": "",
+  "FilterOnFundingVersion": "",
+  "RestrictedVariationReasons": "",
+
   "AzureSearch": {
     "ChangeInIndex": {
-      "LoggedIn_Parent": false,
-      "LoggedIn_Child": false
+      "LoggedIn_Parent": "",
+      "LoggedIn_Child": ""
     }
   }
 }

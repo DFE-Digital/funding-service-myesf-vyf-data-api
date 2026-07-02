@@ -10,17 +10,15 @@ using PDS.VYF.Data.Services.Abstracts.InfraServices;
 using PDS.VYF.Data.Services.Enums;
 using PDS.VYF.Data.Services.Implementations.InfraServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
-using PDS.VYF.Data.Services.Models.InfraModels;
 using PDS.VYF.Data.Services.Tests.Mocks.ExternalClasses;
 using System.Net;
-using System.Net.NetworkInformation;
 
 namespace PDS.VYF.Data.Services.Tests.Implementations.InfraServices
 {
     /// <summary>
     /// The Azure search managing services tests.
     /// </summary>
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class AzSearchManagingServicesTests
     {
         private readonly MockRepository mockRepository;

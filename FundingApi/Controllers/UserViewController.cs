@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PDS.VYF.Data.Services.Abstracts.AppServices;
 using PDS.VYF.Data.Services.Models.RequestModels;
 using PDS.VYF.Data.Services.Models.ResponseModels;

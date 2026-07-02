@@ -68,7 +68,7 @@
         /// </returns>
         public async Task<bool> IsParent(string parentUkprn, List<string> fundingStreamPeriods, CancellationToken cancellationToken)
         {
-            ParentRequest parentRequest = new ()
+            ParentRequest parentRequest = new()
             {
                 FundingStreamPeriods = fundingStreamPeriods,
                 HasToBeLatestFunding = false,
@@ -99,7 +99,7 @@
         /// </returns>
         public async Task<bool> IsMyChild(string parentUkprn, string childUkprn, List<string> fundingStreamPeriods, CancellationToken cancellationToken)
         {
-            ParentRequest parentRequest = new ()
+            ParentRequest parentRequest = new()
             {
                 FundingStreamPeriods = fundingStreamPeriods,
                 HasToBeLatestFunding = false,

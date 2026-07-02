@@ -15,7 +15,7 @@
         private readonly SearchIndexClient searchIndexClient;
         private readonly IAzSearchCosmosServices azSearchCosmosServices;
 
-        private readonly Dictionary<string, SearchClient> appSearchClients = new ();
+        private readonly Dictionary<string, SearchClient> appSearchClients = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AzSearchSearchingServices" /> class.
@@ -42,7 +42,7 @@
             string containerName = this.azSearchCosmosServices.GetContainerName(azSearchIndexType);
             string indexName = azSearchIndexType.GetIndexName(containerName);
 
-            SearchOptions searchOptions = new ()
+            SearchOptions searchOptions = new()
             {
                 Filter = filters
             };

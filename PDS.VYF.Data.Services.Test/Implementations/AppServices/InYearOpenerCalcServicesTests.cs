@@ -1,17 +1,13 @@
 ﻿using FluentAssertions;
-using FluentAssertions.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using PDS.VYF.Data.Services.Implementations.AppServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
-using System;
 
 namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 {
     /// <summary>
     /// The Test classes for InYearOpenerCalcServices.
     /// </summary>
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class InYearOpenerCalcServicesTests
     {
         private const int DaysInFullYear = 733;
@@ -40,7 +36,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 YearTo = 2024,
                 DateOpened = new DateTime(2023, 9, 1),
                 OpenReason = "Fresh Start",
-                Calculations = new List<LoggedInCalculation> { new () { TemplateCalculationId = DaysInFullYear, Value = "365" }, new () { TemplateCalculationId = DaysOpenInYear, Value = "365" } }
+                Calculations = new List<LoggedInCalculation> { new() { TemplateCalculationId = DaysInFullYear, Value = "365" }, new() { TemplateCalculationId = DaysOpenInYear, Value = "365" } }
             };
 
             // Act
@@ -63,7 +59,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 YearFrom = 2023,
                 YearTo = 2024,
                 DateOpened = new DateTime(2023, 9, 1),
-                Calculations = new List<LoggedInCalculation> { new () { TemplateCalculationId = DaysInFullYear, Value = "365" }, new () { TemplateCalculationId = DaysOpenInYear, Value = "364" } }
+                Calculations = new List<LoggedInCalculation> { new() { TemplateCalculationId = DaysInFullYear, Value = "365" }, new() { TemplateCalculationId = DaysOpenInYear, Value = "364" } }
             };
 
             // Act
@@ -86,7 +82,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 YearFrom = 2023,
                 YearTo = 2024,
                 DateOpened = new DateTime(2023, 5, 1),
-                Calculations = new List<LoggedInCalculation> { new () { TemplateCalculationId = DaysInFullYear, Value = "365" }, new () { TemplateCalculationId = DaysOpenInYear, Value = "365" } }
+                Calculations = new List<LoggedInCalculation> { new() { TemplateCalculationId = DaysInFullYear, Value = "365" }, new() { TemplateCalculationId = DaysOpenInYear, Value = "365" } }
             };
 
             // Act
@@ -109,7 +105,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
                 YearFrom = 2023,
                 YearTo = 2024,
                 DateOpened = new DateTime(2023, 9, 1),
-                Calculations = new List<LoggedInCalculation> { new () { TemplateCalculationId = DaysInFullYear, Value = "365" }, new () { TemplateCalculationId = DaysOpenInYear, Value = "365" } }
+                Calculations = new List<LoggedInCalculation> { new() { TemplateCalculationId = DaysInFullYear, Value = "365" }, new() { TemplateCalculationId = DaysOpenInYear, Value = "365" } }
             };
 
             // Act
@@ -128,7 +124,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             // Arrange
             var model = new LoggedInChildAzSearchModel
             {
-                Calculations = new List<LoggedInCalculation> { new () { TemplateCalculationId = DaysInFullYear, Value = "365" } }
+                Calculations = new List<LoggedInCalculation> { new() { TemplateCalculationId = DaysInFullYear, Value = "365" } }
             };
 
             // Act
@@ -147,7 +143,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             // Arrange
             var model = new LoggedInChildAzSearchModel
             {
-                Calculations = new List<LoggedInCalculation> { new () { TemplateCalculationId = DaysInFullYear, Value = "365" } }
+                Calculations = new List<LoggedInCalculation> { new() { TemplateCalculationId = DaysInFullYear, Value = "365" } }
             };
 
             // Act

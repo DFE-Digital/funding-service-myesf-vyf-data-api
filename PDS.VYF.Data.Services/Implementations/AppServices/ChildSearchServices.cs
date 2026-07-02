@@ -1,6 +1,5 @@
 ﻿namespace PDS.VYF.Data.Services.Implementations.AppServices
 {
-    using System.Globalization;
     using PDS.VYF.Data.Services.Abstracts.AppServices;
     using PDS.VYF.Data.Services.Abstracts.InfraServices;
     using PDS.VYF.Data.Services.Constants;
@@ -9,6 +8,7 @@
     using PDS.VYF.Data.Services.Models.AzSearchModels;
     using PDS.VYF.Data.Services.Models.RequestModels;
     using PDS.VYF.Data.Services.Models.ResponseModels;
+    using System.Globalization;
 
     /// <summary>
     /// The Service class for Child Search API requests.
@@ -105,7 +105,7 @@
         /// <param name="childRequest">The child request.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public async Task<List<string?>> LatestFundingPeriod(ChildRequest childRequest,  CancellationToken cancellationToken)
+        public async Task<List<string?>> LatestFundingPeriod(ChildRequest childRequest, CancellationToken cancellationToken)
         {
             var filter = childRequest.BuildFilter().ToString();
             childRequest.HasIYOToBeRemoved = false;
@@ -228,11 +228,11 @@
         /// <param name="childRequest">The child request.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public async Task<List<LoggedInChildAzSearchModel>?> SearchChildrenOfAParent(string parentUkprn,  ChildRequest childRequest, CancellationToken cancellationToken)
+        public async Task<List<LoggedInChildAzSearchModel>?> SearchChildrenOfAParent(string parentUkprn, ChildRequest childRequest, CancellationToken cancellationToken)
         {
-            ParentRequest parentRequest = new ()
+            ParentRequest parentRequest = new()
             {
-                ListOfUKPRNs = new () { parentUkprn },
+                ListOfUKPRNs = new() { parentUkprn },
                 FundingStreamPeriods = childRequest.FundingStreamPeriods,
                 HasToBeLatestFunding = true
             };
@@ -280,9 +280,9 @@
         {
             var result = new Dictionary<ComparisonTypeEnum, ChildComparisonResponse>();
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
-                ListOfUKPRNs = new () { childComparisonRequest.ChildUKPRN },
+                ListOfUKPRNs = new() { childComparisonRequest.ChildUKPRN },
                 HasToBeLatestFunding = false,
                 HasIYOToBeRemoved = true,
                 DoFindIsLatest = true,

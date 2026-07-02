@@ -1,11 +1,6 @@
 ﻿using Moq;
 using PDS.VYF.Data.Services.Abstracts.AppServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PDS.VYF.Data.Services.Tests.Mocks.AppServices
 {

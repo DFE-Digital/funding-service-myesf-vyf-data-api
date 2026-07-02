@@ -1,32 +1,20 @@
 ﻿using Azure;
-using Azure.Core.Pipeline;
-using Azure.Core.Serialization;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
-using Azure.Search.Documents.Indexes.Models;
 using Azure.Search.Documents.Models;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PDS.ViewYourFunding.Data.Interfaces;
-using PDS.ViewYourFunding.Data.Interfaces.DTOs;
 using PDS.VYF.Data.Services.Abstracts.InfraServices;
 using PDS.VYF.Data.Services.Enums;
-using PDS.VYF.Data.Services.Extensions;
 using PDS.VYF.Data.Services.Implementations.InfraServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
-using PDS.VYF.Data.Services.Models.RequestModels;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace PDS.ViewYourFunding.Data.Tests.Implementations.InfraServices
 {
     /// <summary>
     /// The Azure Search Searching Services Tests.
     /// </summary>
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class AzSearchSearchingServicesTests
     {
         private readonly MockRepository mockRepository;
@@ -61,7 +49,7 @@ namespace PDS.ViewYourFunding.Data.Tests.Implementations.InfraServices
         public async Task SearchDocumentAsync_VerifyMethodCall_Success()
         {
             // Arrange
-            List<LoggedInChildAzSearchModel> expectedResult = new ()
+            List<LoggedInChildAzSearchModel> expectedResult = new()
             {
                 new () { Id = "GAG-AC-2425-12345678-1_0" },
                 new () { Id = "GAG-AC-2425-12345678-2_0" },

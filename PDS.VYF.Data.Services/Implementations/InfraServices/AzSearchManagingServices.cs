@@ -82,7 +82,7 @@ namespace PDS.VYF.Data.Services.Implementations.InfraServices
             var typeOfField = this.azSearchCosmosServices.GetIndexFieldType(azSearchIndexType);
 
             var typesForThumbPrint = this.azSearchCosmosServices.GetIndexTypesForThumbPrint(azSearchIndexType);
-            List<string> keyParamsForThumPrint = new () { this.appConfiguration.Repositories.CosmosDb.ConnectionString, cosmosQuery, cosmosContainerName };
+            List<string> keyParamsForThumPrint = new() { this.appConfiguration.Repositories.CosmosDb.ConnectionString, cosmosQuery, cosmosContainerName };
             var thumbPrint = this.azSearchThumbPrintServices.AzIndexThumbPrint(keyParamsForThumPrint, typesForThumbPrint);
 
             return new AzSearchManagingServiceModel
@@ -148,7 +148,7 @@ namespace PDS.VYF.Data.Services.Implementations.InfraServices
             {
                 var isDsCreated = await this.CreateAndLog(azSearchManagingServiceModel.DatasourceName, "Datasource Connection", async () =>
                 {
-                    SearchIndexerDataContainer indexerDataContainer = new (azSearchManagingServiceModel.CosmosContainerName)
+                    SearchIndexerDataContainer indexerDataContainer = new(azSearchManagingServiceModel.CosmosContainerName)
                     {
                         Query = azSearchManagingServiceModel.CosmosQuery
                     };
@@ -185,10 +185,10 @@ namespace PDS.VYF.Data.Services.Implementations.InfraServices
             {
                 var isIndexerCreated = await this.CreateAndLog(azSearchManagingServiceModel.IndexerName, "Indexer", async () =>
                 {
-                    SearchIndexer searchIndexer = new (azSearchManagingServiceModel.IndexerName, azSearchManagingServiceModel.DatasourceName, azSearchManagingServiceModel.IndexName)
+                    SearchIndexer searchIndexer = new(azSearchManagingServiceModel.IndexerName, azSearchManagingServiceModel.DatasourceName, azSearchManagingServiceModel.IndexName)
                     {
-                        Schedule = new (TimeSpan.FromMinutes(30)),
-                        Parameters = new () { BatchSize = 100, },
+                        Schedule = new(TimeSpan.FromMinutes(30)),
+                        Parameters = new() { BatchSize = 100, },
                         Description = azSearchManagingServiceModel.DescriptionWithThumbPrintAndCreateDateTime,
                     };
 
@@ -270,7 +270,7 @@ namespace PDS.VYF.Data.Services.Implementations.InfraServices
         {
             try
             {
-                SearchIndexerDataContainer indexerDataContainer = new (azSearchManagingServiceModel.CosmosContainerName)
+                SearchIndexerDataContainer indexerDataContainer = new(azSearchManagingServiceModel.CosmosContainerName)
                 {
                     Query = azSearchManagingServiceModel.CosmosQuery
                 };
@@ -300,9 +300,9 @@ namespace PDS.VYF.Data.Services.Implementations.InfraServices
         {
             try
             {
-                FieldBuilder fieldBuilder = new ();
+                FieldBuilder fieldBuilder = new();
                 var fields = fieldBuilder.Build(azSearchManagingServiceModel.TypeOfField);
-                SearchIndex newSearchIndex = new (azSearchManagingServiceModel.IndexName, fields);
+                SearchIndex newSearchIndex = new(azSearchManagingServiceModel.IndexName, fields);
 
                 var response = await this.searchIndexClient.CreateIndexAsync(newSearchIndex, cancellationToken);
 
@@ -319,10 +319,10 @@ namespace PDS.VYF.Data.Services.Implementations.InfraServices
         {
             try
             {
-                SearchIndexer searchIndexer = new (azSearchManagingServiceModel.IndexerName, azSearchManagingServiceModel.DatasourceName, azSearchManagingServiceModel.IndexName)
+                SearchIndexer searchIndexer = new(azSearchManagingServiceModel.IndexerName, azSearchManagingServiceModel.DatasourceName, azSearchManagingServiceModel.IndexName)
                 {
-                    Schedule = new (TimeSpan.FromMinutes(30)),
-                    Parameters = new () { BatchSize = 100, },
+                    Schedule = new(TimeSpan.FromMinutes(30)),
+                    Parameters = new() { BatchSize = 100, },
                     Description = azSearchManagingServiceModel.DescriptionWithThumbPrintAndCreateDateTime,
                 };
 

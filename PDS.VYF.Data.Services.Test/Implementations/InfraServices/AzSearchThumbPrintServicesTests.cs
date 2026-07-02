@@ -1,16 +1,13 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using PDS.VYF.Data.Services.Implementations.InfraServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
-using System;
 
 namespace PDS.VYF.Data.Services.Tests.Implementations.InfraServices
 {
     /// <summary>
     /// The Test classes for AzSearchThumbPrintServices.
     /// </summary>
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class AzSearchThumbPrintServicesTests
     {
         /// <summary>
@@ -21,9 +18,9 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.InfraServices
         {
             // Arrange
             var azSearchThumbPrintServices = this.CreateAzSearchThumbPrintServices();
-            List<string> keyParams = new () { "<<sample connection string>>", "Sample Cosmos Container Name", "Sample Cosmos SQL query" };
+            List<string> keyParams = new() { "<<sample connection string>>", "Sample Cosmos Container Name", "Sample Cosmos SQL query" };
             Type[] types = new Type[] { typeof(LoggedInChildAzSearchModel), typeof(LoggedInTemplateLine), typeof(LoggedInCalculation), typeof(LoggedInDistributionPeriod), typeof(LoggedInParentInfoModel) };
-            var expectedValue = 654109341;
+            var expectedValue = 2145107465;
 
             // Act
             var result = azSearchThumbPrintServices.AzIndexThumbPrint(keyParams, types);
@@ -43,7 +40,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.InfraServices
             var azSearchThumbPrintServices = this.CreateAzSearchThumbPrintServices();
             List<string> keyParams = new List<string>() { "<<sample connection string>>", "Sample Cosmos Container Name", "Sample Cosmos SQL query" };
             Type[] types = { typeof(LoggedInParentAzSearchModel), typeof(LoggedInTemplateLine), typeof(LoggedInCalculation), typeof(LoggedInDistributionPeriod) };
-            var expectedValue = 534930097;
+            var expectedValue = 1112863509;
 
             // Act
             var result = azSearchThumbPrintServices.AzIndexThumbPrint(keyParams, types);

@@ -1,17 +1,9 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using PDS.VYF.Data.Services.Abstracts.AppServices;
-using PDS.VYF.Data.Services.Abstracts.InfraServices;
 using PDS.VYF.Data.Services.Enums;
 using PDS.VYF.Data.Services.Implementations.AppServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
 using PDS.VYF.Data.Services.Models.RequestModels;
-using PDS.VYF.Data.Services.Tests.Mocks.AppServices;
 using PDS.VYF.Data.Services.Tests.Mocks.InfraServices;
-using System;
-using System.Globalization;
-using System.Threading.Tasks;
 
 namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 {
@@ -22,7 +14,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
     [TestCategory("Unit")]
     public class ParentSearchServicesTests
     {
-        private readonly MockAzSearchSearchingServices mockAzSearchSearchingServices = new (false);
+        private readonly MockAzSearchSearchingServices mockAzSearchSearchingServices = new(false);
         private readonly ParentSearchServices parentSearchServices;
 
         private readonly List<LoggedInParentAzSearchModel> mockSearchIndexResult = new List<LoggedInParentAzSearchModel>
@@ -97,12 +89,12 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
         [TestMethod]
         public async Task SearchParent_Latest()
         {
-            ParentRequest parentRequest = new ()
+            ParentRequest parentRequest = new()
             {
                 HasToBeLatestFunding = true,
-                FundingStreamPeriods = new () { "GAG-AC-2425" },
-                SelectFields = new () { "Id", "ProviderFundings" },
-                ListOfUKPRNs = new () { "10094589" }
+                FundingStreamPeriods = new() { "GAG-AC-2425" },
+                SelectFields = new() { "Id", "ProviderFundings" },
+                ListOfUKPRNs = new() { "10094589" }
             };
 
             var expectedResult = new List<LoggedInParentAzSearchModel>
@@ -146,12 +138,12 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
         [TestMethod]
         public async Task SearchParent_Not_Latest()
         {
-            ParentRequest parentRequest = new ()
+            ParentRequest parentRequest = new()
             {
                 HasToBeLatestFunding = false,
-                FundingStreamPeriods = new () { "GAG-AC-2425" },
-                SelectFields = new () { "Id", "ProviderFundings" },
-                ListOfUKPRNs = new () { "10094589" }
+                FundingStreamPeriods = new() { "GAG-AC-2425" },
+                SelectFields = new() { "Id", "ProviderFundings" },
+                ListOfUKPRNs = new() { "10094589" }
             };
 
             var expectedResult = new List<LoggedInParentAzSearchModel>

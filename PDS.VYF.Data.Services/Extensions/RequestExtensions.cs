@@ -1,9 +1,8 @@
 ﻿namespace PDS.VYF.Data.Services.Extensions
 {
-    using System.Text;
-    using PDS.ViewYourFunding.Data.Core;
     using PDS.VYF.Data.Services.Models.AzSearchModels;
     using PDS.VYF.Data.Services.Models.RequestModels;
+    using System.Text;
 
     /// <summary>
     /// The class which holds all the extension methods for Request.

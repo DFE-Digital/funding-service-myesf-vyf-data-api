@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using PDS.ViewYourFunding.Data.API.Helpers;
 using PDS.VYF.Data.Services.Abstracts.AppServices;
 using PDS.VYF.Data.Services.Enums;
-using PDS.VYF.Data.Services.Implementations.AppServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
 using PDS.VYF.Data.Services.Models.RequestModels;
 using PDS.VYF.Data.Services.Models.ResponseModels;

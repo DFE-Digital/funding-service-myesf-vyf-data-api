@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using PDS.ViewYourFunding.Data.Core;
 using PDS.ViewYourFunding.Data.Interfaces;
 using PDS.ViewYourFunding.Data.Services.Helpers;

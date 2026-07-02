@@ -1,10 +1,10 @@
 ﻿namespace PDS.VYF.Data.Services.Implementations.InfraServices
 {
+    using Azure.Data.Tables;
+    using PDS.VYF.Data.Services.Abstracts.InfraServices;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Azure.Data.Tables;
-    using PDS.VYF.Data.Services.Abstracts.InfraServices;
 
     /// <summary>
     /// The Class for Azure Table Services.

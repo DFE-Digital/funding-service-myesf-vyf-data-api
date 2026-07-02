@@ -1,17 +1,15 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PDS.VYF.Data.Services.Enums;
 using PDS.VYF.Data.Services.Implementations.AppServices;
 using PDS.VYF.Data.Services.Models.AzSearchModels;
 using PDS.VYF.Data.Services.Models.RequestModels;
 using PDS.VYF.Data.Services.Models.ResponseModels;
-using System;
 using System.Data;
 
 namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 {
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class ComparisonServicesTests
     {
         private MockRepository mockRepository;

@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PDS.ViewYourFunding.Data.Services.Extensions;
 using PDS.ViewYourFunding.Data.Services.Helpers;
 
 namespace PDS.ViewYourFunding.Data.Tests.Unit.Helpers

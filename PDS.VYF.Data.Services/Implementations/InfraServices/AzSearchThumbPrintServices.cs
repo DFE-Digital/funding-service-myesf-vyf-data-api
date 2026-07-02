@@ -1,11 +1,11 @@
 ﻿namespace PDS.VYF.Data.Services.Implementations.InfraServices
 {
+    using Azure.Search.Documents.Indexes;
+    using PDS.VYF.Data.Services.Abstracts.InfraServices;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Azure.Search.Documents.Indexes;
-    using PDS.VYF.Data.Services.Abstracts.InfraServices;
 
     /// <summary>
     /// The Azure search thumb print services.

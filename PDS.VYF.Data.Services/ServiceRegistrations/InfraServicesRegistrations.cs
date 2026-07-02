@@ -1,6 +1,5 @@
 ﻿namespace PDS.VYF.Data.Services.ServiceRegistrations
 {
-    using System;
     using Azure;
     using Azure.Core;
     using Azure.Data.Tables;
@@ -11,6 +10,7 @@
     using PDS.ViewYourFunding.Data.Core;
     using PDS.VYF.Data.Services.Abstracts.InfraServices;
     using PDS.VYF.Data.Services.Implementations.InfraServices;
+    using System;
 
     /// <summary>
     /// The infra services registrations.
@@ -37,7 +37,7 @@
         {
             var appConfiguration = serviceProvider.GetRequiredService<IOptions<ApplicationConfiguration>>().Value;
 
-            Uri searchServiceEndPoint = new ($"https://{appConfiguration.Repositories.AzureSearch.Name}.search.windows.net");
+            Uri searchServiceEndPoint = new($"https://{appConfiguration.Repositories.AzureSearch.Name}.search.windows.net");
             string queryApiKey = appConfiguration.Repositories.AzureSearch.QueryKey;
 
             var searchIndexClient = new SearchIndexClient(searchServiceEndPoint, new AzureKeyCredential(queryApiKey));

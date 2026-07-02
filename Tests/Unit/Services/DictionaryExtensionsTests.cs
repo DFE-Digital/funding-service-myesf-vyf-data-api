@@ -1,9 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PDS.ViewYourFunding.Data.Services.Extensions;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PDS.ViewYourFunding.Data.Tests.Unit.Services
 {

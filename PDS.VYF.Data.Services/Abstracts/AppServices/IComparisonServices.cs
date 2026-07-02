@@ -1,9 +1,9 @@
 ﻿namespace PDS.VYF.Data.Services.Abstracts.AppServices
 {
-    using System.Collections.Generic;
     using PDS.VYF.Data.Services.Models.AzSearchModels;
     using PDS.VYF.Data.Services.Models.RequestModels;
     using PDS.VYF.Data.Services.Models.ResponseModels;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The Comparison Services.

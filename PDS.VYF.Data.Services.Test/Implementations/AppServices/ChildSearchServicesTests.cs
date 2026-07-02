@@ -13,16 +13,16 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
     /// <summary>
     /// The Search Child Tests.
     /// </summary>
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class ChildSearchServicesTests
     {
-        private readonly MockAzSearchSearchingServices mockAzSearchSearchingServices = new (false);
-        private readonly MockInYearOpenerCalcServices mockInYearOpenerCalServices = new ();
+        private readonly MockAzSearchSearchingServices mockAzSearchSearchingServices = new(false);
+        private readonly MockInYearOpenerCalcServices mockInYearOpenerCalServices = new();
         private readonly ChildSearchServices childSearchServices;
 
         private readonly Mock<IComparisonServices> mockComparisonServices = new Mock<IComparisonServices>(MockBehavior.Strict);
 
-        private readonly List<LoggedInChildAzSearchModel> mockSearchIndexResult = new ()
+        private readonly List<LoggedInChildAzSearchModel> mockSearchIndexResult = new()
         {
                 new ()
                 {
@@ -123,7 +123,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = false,
@@ -173,7 +173,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = true,
@@ -232,7 +232,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, this.mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = true,
@@ -291,7 +291,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = false,
@@ -379,7 +379,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = false,
                 HasIYOToBeRemoved = false,
@@ -465,7 +465,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = hasToBeLatestFunding,
                 HasIYOToBeRemoved = hasIYOToBeRemoved,
@@ -1074,12 +1074,12 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = true,
-                FundingStreamPeriods = new () { "GAG-AC-2425" },
-                SelectFields = new () { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
+                FundingStreamPeriods = new() { "GAG-AC-2425" },
+                SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
             var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
@@ -1206,12 +1206,12 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = false,
-                FundingStreamPeriods = new () { "GAG-AC-2425" },
-                SelectFields = new () { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
+                FundingStreamPeriods = new() { "GAG-AC-2425" },
+                SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
             var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
@@ -1313,12 +1313,12 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = false,
                 HasIYOToBeRemoved = true,
-                FundingStreamPeriods = new () { "GAG-AC-2425" },
-                SelectFields = new () { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
+                FundingStreamPeriods = new() { "GAG-AC-2425" },
+                SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
             var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
@@ -1443,12 +1443,12 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockparentresult);
             mockInYearOpenerCalServices.SetupIsInYearOpener(inYearOpenerIds);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = false,
                 HasIYOToBeRemoved = false,
-                FundingStreamPeriods = new () { "GAG-AC-2425" },
-                SelectFields = new () { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
+                FundingStreamPeriods = new() { "GAG-AC-2425" },
+                SelectFields = new() { "Id", "StatementType", "OrganisationUkprn", "ParentInfo/ParentId" }
             };
 
             var result = await childSearchServices.SearchChildrenOfAParent(parentUkprn, childRequest, default);
@@ -1521,7 +1521,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = false,
@@ -1598,7 +1598,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 
             mockAzSearchSearchingServices.SetupSearchDocumentAsync(AzSearchIndexTypeEnum.LoggedIn_Child, mockSearchIndexResult);
 
-            ChildRequest childRequest = new ()
+            ChildRequest childRequest = new()
             {
                 HasToBeLatestFunding = true,
                 HasIYOToBeRemoved = false,

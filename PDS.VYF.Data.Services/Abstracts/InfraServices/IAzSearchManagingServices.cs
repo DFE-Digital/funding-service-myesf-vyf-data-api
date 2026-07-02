@@ -1,7 +1,7 @@
 ﻿namespace PDS.VYF.Data.Services.Abstracts.InfraServices
 {
-    using System.Threading.Tasks;
     using PDS.VYF.Data.Services.Enums;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The interface for Azure search managing services.

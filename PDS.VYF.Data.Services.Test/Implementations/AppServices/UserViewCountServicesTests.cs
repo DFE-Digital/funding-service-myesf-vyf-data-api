@@ -1,28 +1,17 @@
-﻿using Azure;
-using Azure.Data.Tables;
-using Azure.Search.Documents;
-using Azure.Search.Documents.Indexes.Models;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
+﻿using Azure.Data.Tables;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PDS.VYF.Data.Services.Abstracts.AppServices;
 using PDS.VYF.Data.Services.Abstracts.InfraServices;
 using PDS.VYF.Data.Services.Implementations.AppServices;
-using PDS.VYF.Data.Services.Models.AzSearchModels;
 using PDS.VYF.Data.Services.Models.RequestModels;
 using PDS.VYF.Data.Services.Models.ResponseModels;
-using System;
-using System.Data;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace PDS.VYF.Data.Services.Tests.Implementations.AppServices
 {
     /// <summary>
     /// The User View Count Services Tests.
     /// </summary>
-    [TestClass]
+    [TestClass, TestCategory("Unit")]
     public class UserViewCountServicesTests
     {
         private readonly MockRepository mockRepository;

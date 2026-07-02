@@ -1,8 +1,8 @@
 ﻿namespace PDS.VYF.Data.Services.Models.AzSearchModels
 {
-    using System.ComponentModel.DataAnnotations;
     using Azure.Search.Documents.Indexes;
     using Azure.Search.Documents.Indexes.Models;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// The logged in parent az search model.
