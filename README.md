@@ -157,3 +157,14 @@ Before running the application locally:
 6. Ensure you have access to the configured Azure Storage Account.
 8. Verify Application Insights configuration has been populated if local telemetry is required.
 9. Restore project dependencies and run the API locally.
+
+## Build and Test
+
+To build and test locally, you can either use Visual Studio, Visual Studio Code or simply use dotnet CLI `dotnet build` and `dotnet test` more information in dotnet CLI can be found at <https://docs.microsoft.com/en-us/dotnet/core/tools/>.
+
+## Contribute
+
+To contribute,
+
+- If you are part of the team then create a branch for changes and then submit your changes for review by creating a pull request.
+- If you are external to the organisation then fork this repository and make necessary changes and then submit your changes for review by creating a pull request.
