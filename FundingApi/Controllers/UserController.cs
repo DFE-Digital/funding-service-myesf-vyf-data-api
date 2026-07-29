@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using FundingApi.DTOs;
+﻿using FundingApi.DTOs;
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

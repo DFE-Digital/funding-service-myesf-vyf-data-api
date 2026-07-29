@@ -1,7 +1,8 @@
-﻿using AutoMapper;
-using Azure.Search.Documents;
+﻿using Azure.Search.Documents;
 using Azure.Search.Documents.Models;
 using FluentAssertions;
+using Mapster;
+using MapsterMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -59,12 +60,9 @@ namespace PDS.ViewYourFunding.Data.Tests.Integration
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            var mockMapper = new MapperConfiguration(
-                cfg =>
-                {
-                    cfg.AddProfile(new AutoMapperProfile());
-                });
-            _mapper = mockMapper.CreateMapper();
+            TypeAdapterConfig config = new TypeAdapterConfig();
+            config.Configure();
+            _mapper = new Mapper(config);
         }
 
         #endregion
