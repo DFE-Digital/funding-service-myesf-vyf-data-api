@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
 using FundingApi.Controllers;
 using FundingApi.DTOs;
-using FundingApi.Extentions;
 using Mapster;
 using MapsterMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using PDS.ViewYourFunding.Data.API.Extensions;
 using PDS.ViewYourFunding.Data.Interfaces;
 using PDS.ViewYourFunding.Data.Interfaces.Models;
 using PDS.ViewYourFunding.Data.Services.Models;

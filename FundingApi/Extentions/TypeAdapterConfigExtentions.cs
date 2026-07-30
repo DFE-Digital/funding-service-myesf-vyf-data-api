@@ -7,7 +7,7 @@ using PDS.ViewYourFunding.Data.Interfaces.Models;
 using PDS.ViewYourFunding.Data.Services.Models;
 
 
-namespace FundingApi.Extentions
+namespace PDS.ViewYourFunding.Data.API.Extensions
 {
     /// <summary>
     /// extention added for mapster.
@@ -20,16 +20,13 @@ namespace FundingApi.Extentions
         /// <param name="config">The internal filename as it is in storage.</param>
         public static void Configure(this TypeAdapterConfig config)
         {
+            config.Default.AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
             config.NewConfig<FundingApiSearchFilterParameters, SearchFilterParameters>();
-            config.NewConfig<FundingApiSearchFundingStreamParameters, FundingStreamParameters>()
-            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
-            config.NewConfig<AzureProviderFundingSearchDocument, FundingApiSearchProviderFunding>()
-            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
+            config.NewConfig<FundingApiSearchFundingStreamParameters, FundingStreamParameters>();
+            config.NewConfig<AzureProviderFundingSearchDocument, FundingApiSearchProviderFunding>();
             config.NewConfig<UserFundingViewCount, UserFundingViewCountResponse>();
-            config.NewConfig<IFundingSearchDocument, FundingApiSearchFunding>()
-            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
-            config.NewConfig<AzureFundingSearchDocument, FundingApiSearchFunding>()
-            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
+            config.NewConfig<IFundingSearchDocument, FundingApiSearchFunding>();
+            config.NewConfig<AzureFundingSearchDocument, FundingApiSearchFunding>();
         }
     }
 }
