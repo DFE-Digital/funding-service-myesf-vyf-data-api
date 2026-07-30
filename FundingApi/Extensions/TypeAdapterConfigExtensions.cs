@@ -12,7 +12,7 @@ namespace PDS.ViewYourFunding.Data.API.Extensions
     /// <summary>
     /// extention added for mapster.
     /// </summary>
-    public static class TypeAdapterConfigExtentions
+    public static class TypeAdapterConfigExtensions
     {
         /// <summary>
         /// Download a spreadsheet.
