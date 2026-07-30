@@ -64,8 +64,7 @@ stages:
           dotnet list package --vulnerable --include-transitive 2>&1 | tee build.log
           echo 'Analyse dotnet list package command log output...'
           #TODO - when we find an alternative to AutoMapper, change back to including high severity vulnerabilities in the scan.
-          # if grep -q -i 'critical\|high' build.log; then
-          if grep -q -i 'critical' build.log; then
+          if grep -q -i 'critical\|high' build.log; then
               echo 'Must fix security vulnerabilities found on the log output.'
               exit 1      # Fails the job if critical or high vulnerabilities are found
           else

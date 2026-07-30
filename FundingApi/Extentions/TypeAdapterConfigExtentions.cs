@@ -7,7 +7,7 @@ using PDS.ViewYourFunding.Data.Interfaces.Models;
 using PDS.ViewYourFunding.Data.Services.Models;
 
 
-namespace PDS.ViewYourFunding.Data.API
+namespace FundingApi.Extentions
 {
     /// <summary>
     /// extention added for mapster.
@@ -21,10 +21,13 @@ namespace PDS.ViewYourFunding.Data.API
         public static void Configure(this TypeAdapterConfig config)
         {
             config.NewConfig<FundingApiSearchFilterParameters, SearchFilterParameters>();
-            config.NewConfig<FundingApiSearchFundingStreamParameters, FundingStreamParameters>();
-            config.NewConfig<AzureProviderFundingSearchDocument, FundingApiSearchProviderFunding>();
+            config.NewConfig<FundingApiSearchFundingStreamParameters, FundingStreamParameters>()
+            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
+            config.NewConfig<AzureProviderFundingSearchDocument, FundingApiSearchProviderFunding>()
+            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
             config.NewConfig<UserFundingViewCount, UserFundingViewCountResponse>();
-            config.NewConfig<IFundingSearchDocument, FundingApiSearchFunding>();
+            config.NewConfig<IFundingSearchDocument, FundingApiSearchFunding>()
+            .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
             config.NewConfig<AzureFundingSearchDocument, FundingApiSearchFunding>()
             .AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
         }
