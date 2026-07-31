@@ -21,12 +21,6 @@ namespace PDS.ViewYourFunding.Data.API.Extensions
         public static void Configure(this TypeAdapterConfig config)
         {
             config.Default.AddDestinationTransform(DestinationTransform.EmptyCollectionIfNull);
-            config.NewConfig<FundingApiSearchFilterParameters, SearchFilterParameters>();
-            config.NewConfig<FundingApiSearchFundingStreamParameters, FundingStreamParameters>();
-            config.NewConfig<AzureProviderFundingSearchDocument, FundingApiSearchProviderFunding>();
-            config.NewConfig<UserFundingViewCount, UserFundingViewCountResponse>();
-            config.NewConfig<IFundingSearchDocument, FundingApiSearchFunding>();
-            config.NewConfig<AzureFundingSearchDocument, FundingApiSearchFunding>();
         }
     }
 }
