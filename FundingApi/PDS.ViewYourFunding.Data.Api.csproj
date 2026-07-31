@@ -18,8 +18,10 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.CosmosDb" Version="9.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Mapster" Version="10.0.11" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="10.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.Internal" Version="8.0.1" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.50.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
@@ -30,6 +32,7 @@
     <PackageReference Include="Pds.Core.ApiAuthentication" Version="2.0.1" />
     <PackageReference Include="Pds.Core.CodeAnalysis.StyleCop" Version="2.0.0" />
     <PackageReference Include="Pds.Core.Telemetry.ApplicationInsights" Version="3.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>

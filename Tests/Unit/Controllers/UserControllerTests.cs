@@ -1,11 +1,12 @@
-﻿using AutoMapper;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FundingApi.Controllers;
 using FundingApi.DTOs;
+using Mapster;
+using MapsterMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using PDS.ViewYourFunding.Data.API;
+using PDS.ViewYourFunding.Data.API.Extensions;
 using PDS.ViewYourFunding.Data.Interfaces;
 using PDS.ViewYourFunding.Data.Interfaces.Models;
 using PDS.ViewYourFunding.Data.Services.Models;
@@ -40,12 +41,9 @@ namespace PDS.ViewYourFunding.Data.Tests.Unit.Controllers
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            var mockMapper = new MapperConfiguration(
-                cfg =>
-                {
-                    cfg.AddProfile(new AutoMapperProfile());
-                });
-            _mapper = mockMapper.CreateMapper();
+            TypeAdapterConfig config = new TypeAdapterConfig();
+            config.Configure();
+            _mapper = new Mapper(config);
         }
 
         #endregion

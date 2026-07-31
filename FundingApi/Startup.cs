@@ -1,3 +1,5 @@
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Pds.Core.ApiAuthentication;
 using Pds.Core.Telemetry.ApplicationInsights;
+using PDS.ViewYourFunding.Data.API.Extensions;
 using PDS.ViewYourFunding.Data.API.Helpers;
 using PDS.ViewYourFunding.Data.Core;
 using PDS.ViewYourFunding.Data.Interfaces;
@@ -67,7 +70,10 @@ namespace PDS.ViewYourFunding.Data.API
 
             services.AddSingleton<IAuthorizationHandler, ToggleAuthorizeHandler>();
             services.AddControllers();
-            services.AddAutoMapper(typeof(Startup));
+            TypeAdapterConfig config = new TypeAdapterConfig();
+            config.Configure();
+            services.AddSingleton(config);
+            services.AddScoped<IMapper, ServiceMapper>();
             services.AddHttpContextAccessor();
 
             services.AddPdsApplicationInsightsTelemetry(BuildAppInsightsConfiguration);
