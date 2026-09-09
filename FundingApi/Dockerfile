@@ -42,4 +42,4 @@ RUN dotnet publish "./PDS.ViewYourFunding.Data.Api.csproj" -c $BUILD_CONFIGURATI
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "PDS.ViewYourFunding.Data.API.dll"]
+ENTRYPOINT ["dotnet", "PDS.ViewYourFunding.Data.Api.dll"]
