@@ -16,7 +16,7 @@ name: $(Build.BuildId)
 variables:
   buildConfiguration: release
   #.NET SDK version number
-  dotnetVersion: '8.0'
+  dotnetVersion: '10.0'
   #PDS custom NuGet feed id
   nugetFeed: 9fd46a3f-eada-41dc-86e9-36332aeb8ef1/ecd5af68-0566-42db-8cd7-e71176254aa2
   #Path of project to be published

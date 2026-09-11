@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>FundingApi</RootNamespace>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
@@ -18,21 +18,17 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.CosmosDb" Version="9.0.0" />
-    <PackageReference Include="Mapster" Version="10.0.11" />
-    <PackageReference Include="Mapster.DependencyInjection" Version="10.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.22" />
-    <PackageReference Include="Microsoft.AspNetCore.Cryptography.Internal" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.11" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.50.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.79.2" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.88.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.14.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="8.0.22" />
-    <PackageReference Include="Pds.Core.ApiAuthentication" Version="2.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="10.0.2" />
+    <PackageReference Include="Pds.Core.ApiAuthentication" Version="3.0.0" />
     <PackageReference Include="Pds.Core.CodeAnalysis.StyleCop" Version="2.0.0" />
     <PackageReference Include="Pds.Core.Telemetry.ApplicationInsights" Version="3.0.0" />
-    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.4" />
+	<PackageReference Include="Mapster" Version="10.0.11" />
+	<PackageReference Include="Mapster.DependencyInjection" Version="10.0.11" />
   </ItemGroup>
 
   <ItemGroup>
