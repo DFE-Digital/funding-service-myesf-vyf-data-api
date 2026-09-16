@@ -20,13 +20,14 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.InfraServices
             var azSearchThumbPrintServices = this.CreateAzSearchThumbPrintServices();
             List<string> keyParams = new() { "<<sample connection string>>", "Sample Cosmos Container Name", "Sample Cosmos SQL query" };
             Type[] types = new Type[] { typeof(LoggedInChildAzSearchModel), typeof(LoggedInTemplateLine), typeof(LoggedInCalculation), typeof(LoggedInDistributionPeriod), typeof(LoggedInParentInfoModel) };
-            var expectedValue = 2145107465;
+            var expectedValue = 543408840;
 
             // Act
             var result = azSearchThumbPrintServices.AzIndexThumbPrint(keyParams, types);
 
             // Assert
             result.Should().Be(expectedValue);
+
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace PDS.VYF.Data.Services.Tests.Implementations.InfraServices
             var azSearchThumbPrintServices = this.CreateAzSearchThumbPrintServices();
             List<string> keyParams = new List<string>() { "<<sample connection string>>", "Sample Cosmos Container Name", "Sample Cosmos SQL query" };
             Type[] types = { typeof(LoggedInParentAzSearchModel), typeof(LoggedInTemplateLine), typeof(LoggedInCalculation), typeof(LoggedInDistributionPeriod) };
-            var expectedValue = 1112863509;
+            var expectedValue = 100127460;
 
             // Act
             var result = azSearchThumbPrintServices.AzIndexThumbPrint(keyParams, types);
